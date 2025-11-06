@@ -1,12 +1,24 @@
 # 한국어 Fediverse 인스턴스 디렉토리
 
-정적 HTML, CSS, JS로 구성된 한국어 페디버스 인스턴스 목록입니다. 데이터는 `data/instances.json` 파일 하나로 관리하며, GitHub Pages에서 그대로 호스팅할 수 있습니다.
+정적 HTML, CSS, JS로 구성된 한국어 페디버스 인스턴스 목록입니다. `data/instances.json`의 기본 정보와 `data/stats.json`의 통계를 병합해 한 화면에서 확인할 수 있습니다. GitHub Pages에 그대로 호스팅할 수 있습니다.
 
 ## 데이터 편집
 
 1. `data/instances.json`을 열어 항목을 추가하거나 수정합니다.
 2. `name`, `url`, `platform`, `description` 필드를 유지한 채 필요한 값으로 변경합니다.
 3. 저장 후 페이지를 새로고침하면 변경 내용이 반영됩니다.
+
+## 통계 갱신
+
+통계는 수동으로 갱신하며, 하루 1회 정도 실행하도록 가정합니다.
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install requests  # 선택: 설치하지 않으면 표준 라이브러리로 동작합니다.
+python scripts/fetch_stats.py
+```
+
+명령을 실행하면 `data/stats.json`이 생성·갱신됩니다. 결과를 커밋하고 GitHub에 푸시하면 정적 페이지에도 통계가 반영됩니다.
 
 ## 로컬 미리보기
 

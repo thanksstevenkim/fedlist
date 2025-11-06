@@ -40,7 +40,7 @@ main {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 540px;
+  min-width: 720px;
 }
 
 caption {
@@ -59,6 +59,49 @@ td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #e3e7ee;
   text-align: left;
+}
+
+th[data-sort-key] {
+  white-space: nowrap;
+}
+
+th[data-sort-key] button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  font-weight: inherit;
+}
+
+th[data-sort-key] button:hover,
+th[data-sort-key] button:focus-visible {
+  color: #0d6efd;
+}
+
+th[data-sort-key] button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+th[data-sort-key] button::after {
+  content: "";
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath d="M7 10l5-5 5 5H7zm10 4l-5 5-5-5h10z"/%3E%3C/svg%3E') center / contain no-repeat;
+  background-color: currentColor;
+  opacity: 0.35;
+}
+
+th[data-sort-key][data-direction="asc"] button::after {
+  mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath d="M7 14l5-5 5 5H7z"/%3E%3C/svg%3E') center / contain no-repeat;
+  opacity: 0.75;
+}
+
+th[data-sort-key][data-direction="desc"] button::after {
+  mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath d="M7 10l5 5 5-5H7z"/%3E%3C/svg%3E') center / contain no-repeat;
+  opacity: 0.75;
 }
 
 tbody tr:last-child td {
@@ -112,5 +155,10 @@ a:focus {
 
   a {
     color: #60a5fa;
+  }
+
+  th[data-sort-key] button:hover,
+  th[data-sort-key] button:focus-visible {
+    color: #93c5fd;
   }
 }

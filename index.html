@@ -22,12 +22,19 @@
               <th scope="col">이름</th>
               <th scope="col">주소</th>
               <th scope="col">플랫폼</th>
+              <th scope="col" data-sort-key="users_total">
+                <button type="button" aria-label="총 사용자수 정렬">총 사용자수</button>
+              </th>
+              <th scope="col" data-sort-key="users_active_month">
+                <button type="button" aria-label="활성 사용자수 정렬">월간 활성 사용자</button>
+              </th>
+              <th scope="col">게시물 수</th>
               <th scope="col">설명</th>
             </tr>
           </thead>
           <tbody id="instances-body">
             <tr>
-              <td colspan="4">데이터를 불러오는 중입니다…</td>
+              <td colspan="7">데이터를 불러오는 중입니다…</td>
             </tr>
           </tbody>
         </table>
@@ -35,7 +42,7 @@
     </section>
   </main>
   <footer class="page-footer">
-    <p>데이터는 <code>data/instances.json</code> 파일을 직접 수정해 갱신할 수 있습니다.</p>
+    <p>데이터는 <code>data/instances.json</code>과 <code>data/stats.json</code> 파일을 수정해 갱신할 수 있습니다.</p>
   </footer>
   <script src="js/render.js" defer></script>
 </body>
