@@ -1,4 +1,5 @@
 (async function renderDirectory() {
+  const assetBaseUrl = resolveAssetBaseUrl();
   const locale = document.documentElement.lang || "ko";
   const numberLocale = locale || "ko-KR";
   const FALLBACK_STRINGS = {
@@ -82,6 +83,7 @@
         instance,
         host,
         stats: host ? statsMap.get(host) ?? null : null,
+        nodeinfoDescription: null,
       };
     });
 
@@ -93,6 +95,10 @@
     }
 
     updateDisplay();
+
+    preloadNodeInfoDescriptions(baseRows).catch((error) => {
+      console.info("노드 정보 설명을 불러오는 중 문제가 발생했습니다.", error);
+    });
   } catch (error) {
     console.error(error);
     setStatusMessage(strings.error_fetch, { allowHTML: true });
@@ -154,7 +160,7 @@
   }
 
   function filterRows(rows) {
-    return rows.filter(({ instance }) => {
+    return rows.filter(({ instance, nodeinfoDescription }) => {
       const matchesPlatform =
         filters.platform === "all" ||
         normalizePlatformValue(instance.platform) === filters.platform;
@@ -167,7 +173,9 @@
         return true;
       }
 
-      const haystack = `${instance.name ?? ""} ${(instance.description ?? "")}`
+      const haystack = `${instance.name ?? ""} ${instance.description ?? ""} ${
+        nodeinfoDescription ?? ""
+      }`
         .toString()
         .toLowerCase();
       return haystack.includes(filters.query);
@@ -235,8 +243,11 @@
 
     const fragment = document.createDocumentFragment();
 
-    rows.forEach(({ instance, stats }) => {
+    rows.forEach(({ instance, stats, host, nodeinfoDescription }) => {
       const row = document.createElement("tr");
+      if (host) {
+        row.dataset.host = host;
+      }
 
       const nameCell = document.createElement("th");
       nameCell.scope = "row";
@@ -253,7 +264,8 @@
 
       nameCell.appendChild(nameHeading);
 
-      const descriptionText = stringOrNull(instance.description);
+      const descriptionText =
+        stringOrNull(nodeinfoDescription) ?? stringOrNull(instance.description);
       if (descriptionText) {
         const description = document.createElement("p");
         description.className = "cell-name__description";
@@ -314,7 +326,7 @@
   }
 
   async function loadInstances() {
-    const response = await fetch("data/instances.json");
+    const response = await fetch(resolveAssetUrl("data/instances.json"));
     if (!response.ok) {
       throw new Error(`인스턴스 데이터를 불러올 수 없습니다: ${response.status}`);
     }
@@ -327,7 +339,9 @@
 
   async function loadStats() {
     try {
-      const response = await fetch("data/stats.json", { cache: "no-store" });
+      const response = await fetch(resolveAssetUrl("data/stats.json"), {
+        cache: "no-store",
+      });
       if (!response.ok) {
         throw new Error(`통계 데이터를 불러올 수 없습니다: ${response.status}`);
       }
@@ -530,7 +544,9 @@
 
   async function loadStrings() {
     try {
-      const response = await fetch("i18n/strings.json", { cache: "no-store" });
+      const response = await fetch(resolveAssetUrl("i18n/strings.json"), {
+        cache: "no-store",
+      });
       if (!response.ok) {
         throw new Error(`문자열 파일을 불러올 수 없습니다: ${response.status}`);
       }
@@ -687,5 +703,167 @@
     const nextValue = validValues.has(currentValue) ? currentValue : "all";
     elements.platformSelect.value = nextValue;
     filters.platform = nextValue;
+  }
+
+  function resolveAssetBaseUrl() {
+    const scriptUrl = document.currentScript?.src;
+    if (scriptUrl) {
+      try {
+        return new URL("..", scriptUrl);
+      } catch (error) {
+        console.warn("스크립트 기준 경로를 계산할 수 없습니다.", error);
+      }
+    }
+
+    try {
+      const { origin, pathname } = window.location;
+      const normalizedPath = pathname.endsWith("/")
+        ? pathname
+        : pathname.replace(/[^/]*$/, "");
+      return new URL(normalizedPath || "/", origin);
+    } catch (error) {
+      console.warn("문서 기준 경로를 계산할 수 없습니다.", error);
+      return new URL(window.location.href);
+    }
+  }
+
+  function resolveAssetUrl(path) {
+    return new URL(path, assetBaseUrl);
+  }
+
+  async function preloadNodeInfoDescriptions(rows) {
+    const uniqueHosts = Array.from(
+      new Set(rows.map(({ host }) => normalizeHostValue(host)).filter(Boolean))
+    );
+
+    if (!uniqueHosts.length) {
+      return;
+    }
+
+    const results = await Promise.all(
+      uniqueHosts.map(async (host) => ({
+        host,
+        description: await fetchNodeInfoDescription(host),
+      }))
+    );
+
+    let updated = false;
+    results.forEach(({ host, description }) => {
+      if (!description) {
+        return;
+      }
+      rows.forEach((row) => {
+        if (row.host === host && row.nodeinfoDescription !== description) {
+          row.nodeinfoDescription = description;
+          updated = true;
+        }
+      });
+    });
+
+    if (updated) {
+      updateDisplay();
+    }
+  }
+
+  async function fetchNodeInfoDescription(host) {
+    if (!host) return null;
+
+    const origin = `https://${host}`;
+
+    try {
+      const wellKnownResponse = await fetch(`${origin}/.well-known/nodeinfo`, {
+        cache: "no-store",
+        mode: "cors",
+      });
+      if (!wellKnownResponse.ok) {
+        return null;
+      }
+
+      const payload = await wellKnownResponse.json();
+      if (!payload || !Array.isArray(payload.links)) {
+        return null;
+      }
+
+      const prioritizedLinks = prioritizeNodeInfoLinks(payload.links);
+      for (const link of prioritizedLinks) {
+        try {
+          const targetUrl = new URL(link.href, `${origin}/`);
+          const nodeInfoResponse = await fetch(targetUrl, {
+            cache: "no-store",
+            mode: "cors",
+          });
+          if (!nodeInfoResponse.ok) {
+            continue;
+          }
+
+          const nodeInfo = await nodeInfoResponse.json();
+          const description = extractDescriptionFromNodeInfo(nodeInfo);
+          if (description) {
+            return description;
+          }
+        } catch (error) {
+          // Ignore individual nodeinfo fetch errors and try next link.
+        }
+      }
+    } catch (error) {
+      // Ignore network errors silently.
+    }
+
+    return null;
+  }
+
+  function prioritizeNodeInfoLinks(links) {
+    const priorities = [
+      "https://nodeinfo.diaspora.software/ns/schema/2.1",
+      "https://nodeinfo.diaspora.software/ns/schema/2.0",
+      "https://nodeinfo.diaspora.software/ns/schema/1.1",
+      "https://nodeinfo.diaspora.software/ns/schema/1.0",
+      "http://nodeinfo.diaspora.software/ns/schema/2.1",
+      "http://nodeinfo.diaspora.software/ns/schema/2.0",
+      "http://nodeinfo.diaspora.software/ns/schema/1.1",
+      "http://nodeinfo.diaspora.software/ns/schema/1.0",
+    ];
+
+    const recognized = links
+      .filter((link) => link && typeof link.rel === "string" && typeof link.href === "string")
+      .map((link) => ({ ...link, priority: priorities.indexOf(link.rel) }))
+      .filter((entry) => entry.priority >= 0)
+      .sort((a, b) => a.priority - b.priority)
+      .map(({ priority, ...link }) => link);
+
+    if (recognized.length) {
+      return recognized;
+    }
+
+    return links.filter((link) => link && typeof link.href === "string");
+  }
+
+  function extractDescriptionFromNodeInfo(nodeInfo) {
+    if (!nodeInfo || typeof nodeInfo !== "object") {
+      return null;
+    }
+
+    const metadata = nodeInfo.metadata;
+    if (!metadata || typeof metadata !== "object") {
+      return null;
+    }
+
+    const candidates = [
+      metadata.nodeDescription,
+      metadata.description,
+      metadata.shortDescription,
+      metadata.summary,
+      metadata.defaultDescription,
+      metadata.node?.description,
+    ];
+
+    for (const candidate of candidates) {
+      const text = stringOrNull(candidate);
+      if (text) {
+        return text;
+      }
+    }
+
+    return null;
   }
 })();
