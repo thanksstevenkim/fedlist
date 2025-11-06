@@ -57,17 +57,22 @@
     sortableHeaders: Array.from(document.querySelectorAll("th[data-sort-key]")),
   };
 
+  if (!elements.table || !elements.tableBody) {
+    console.error("필수 테이블 요소를 찾을 수 없습니다.");
+    return;
+  }
+
   const columnCount = elements.table.querySelectorAll("thead th").length || 8;
 
   const stringsData = await loadStrings();
   const strings = resolveStrings(stringsData, locale);
 
-  applyStaticStrings(strings);
-  setStatusMessage(strings.loading, { busy: true });
-
   const filters = { query: "", platform: "all" };
   const sortState = { key: null, direction: "desc" };
   let baseRows = [];
+
+  applyStaticStrings(strings);
+  setStatusMessage(strings.loading, { busy: true });
 
   bindFilters();
   bindSorting();
@@ -706,29 +711,16 @@
   }
 
   function resolveAssetBaseUrl() {
-    const scriptUrl = document.currentScript?.src;
-    if (scriptUrl) {
-      try {
-        return new URL("..", scriptUrl);
-      } catch (error) {
-        console.warn("스크립트 기준 경로를 계산할 수 없습니다.", error);
-      }
-    }
-
     try {
-      const { origin, pathname } = window.location;
-      const normalizedPath = pathname.endsWith("/")
-        ? pathname
-        : pathname.replace(/[^/]*$/, "");
-      return new URL(normalizedPath || "/", origin);
+      return new URL("./", document.baseURI);
     } catch (error) {
       console.warn("문서 기준 경로를 계산할 수 없습니다.", error);
-      return new URL(window.location.href);
+      return new URL("./", window.location.href);
     }
   }
 
   function resolveAssetUrl(path) {
-    return new URL(path, assetBaseUrl);
+    return new URL(path, assetBaseUrl).toString();
   }
 
   async function preloadNodeInfoDescriptions(rows) {
