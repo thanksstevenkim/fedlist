@@ -41,7 +41,12 @@ def main() -> None:
     args = parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
-    instances = list(load_instances(INSTANCES_PATH))
+    # --input이 지정된 경우 호스트 문자열 목록을 로드
+    if args.input:
+        instances = list(load_host_strings(Path(args.input)))
+    else:
+        instances = list(load_instances(INSTANCES_PATH))
+    
     if not instances:
         logging.error("No instances to process. Did you populate data/instances.json?")
         return
@@ -87,6 +92,10 @@ def main() -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Fetch ActivityPub stats for configured instances.")
+    parser.add_argument(
+        "--input",
+        help="Input file with host list (plain strings) to fetch stats for. Outputs to data/stats.json.",
+    )
     parser.add_argument(
         "--discover-peers",
         action="store_true",
@@ -162,6 +171,67 @@ def load_instances(path: Path) -> Iterable[Instance]:
     return instances
 
 
+def load_host_strings(path: Path) -> Iterable[Instance]:
+    """
+    문자열 배열로 된 호스트 목록을 로드합니다.
+    예: ["mastodon.social", "pixelfed.social", ...]
+    """
+    if not path.exists():
+        logging.error("Host list file not found: %s", path)
+        return []
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        logging.error("Invalid JSON in %s: %s", path, exc)
+        return []
+
+    if not isinstance(data, list):
+        logging.error("Expected a list in %s", path)
+        return []
+
+    instances: List[Instance] = []
+    for entry in data:
+        # 문자열인 경우
+        if isinstance(entry, str):
+            host = entry.strip().lower()
+            if not host:
+                continue
+            instances.append(
+                Instance(
+                    name=host,
+                    host=host,
+                    url=f"https://{host}",
+                    platform="unknown",  # 플랫폼은 NodeInfo에서 감지될 것
+                )
+            )
+        # 딕셔너리인 경우 (호환성)
+        elif isinstance(entry, dict):
+            url = str(entry.get("url", "")).strip()
+            if not url:
+                host = str(entry.get("host", "")).strip().lower()
+                if host:
+                    url = f"https://{host}"
+                else:
+                    logging.warning("Skipping entry without URL or host: %s", entry)
+                    continue
+            host = extract_host(entry)
+            if not host:
+                logging.warning("Skipping %s: could not determine host", url)
+                continue
+            instances.append(
+                Instance(
+                    name=str(entry.get("name", "")).strip() or host,
+                    host=host,
+                    url=normalize_base_url(url, host),
+                    platform=str(entry.get("platform", "")).strip().lower() or "unknown",
+                )
+            )
+    
+    logging.info("Loaded %d hosts from %s", len(instances), format_relative(path))
+    return instances
+
+
 def extract_host(entry: Dict[str, Any]) -> str:
     host = str(entry.get("host", "")).strip().lower()
     if host:
@@ -227,22 +297,31 @@ def process_instance(instance: Instance, timestamp: str) -> Tuple[Dict[str, Any]
         peers.update(extract_peer_hosts_from_nodeinfo(nodeinfo))
 
     platform_data: Optional[Dict[str, Any]] = None
-    if instance.platform == "mastodon":
+    # 플랫폼이 unknown이면 소프트웨어 이름으로 추론
+    platform = instance.platform
+    if platform == "unknown" and record.get("software", {}).get("name"):
+        detected_name = record["software"]["name"].lower()
+        if "mastodon" in detected_name or "hometown" in detected_name or "glitch" in detected_name:
+            platform = "mastodon"
+        elif "misskey" in detected_name or "calckey" in detected_name or "firefish" in detected_name:
+            platform = "misskey"
+    
+    if platform == "mastodon":
         try:
             platform_data = fetch_mastodon(instance.url)
         except FetchError as exc:
             errors.append(f"mastodon: {exc}")
         else:
             record["verified_activitypub"] = True
-    elif instance.platform == "misskey":
+    elif platform == "misskey":
         try:
             platform_data = fetch_misskey(instance.url)
         except FetchError as exc:
             errors.append(f"misskey: {exc}")
         else:
             record["verified_activitypub"] = True
-    else:
-        errors.append(f"unsupported platform: {instance.platform or 'unknown'}")
+    elif platform != "unknown":
+        errors.append(f"unsupported platform: {platform}")
 
     if platform_data:
         update_software(record, platform_data.get("software", {}))
