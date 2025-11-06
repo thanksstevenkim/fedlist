@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>한국어 Fediverse 인스턴스 디렉토리</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="page-header">
+    <h1>한국어 Fediverse 인스턴스 디렉토리</h1>
+    <p>한국어로 운영되는 페디버스 인스턴스를 수동으로 정리한 목록입니다.</p>
+  </header>
+  <main>
+    <section aria-labelledby="directory-title">
+      <h2 id="directory-title" class="sr-only">인스턴스 목록</h2>
+      <div class="table-container">
+        <table aria-label="한국어 Fediverse 인스턴스 목록">
+          <caption>5개 이상의 한국어 Fediverse 인스턴스 예시</caption>
+          <thead>
+            <tr>
+              <th scope="col">이름</th>
+              <th scope="col">주소</th>
+              <th scope="col">플랫폼</th>
+              <th scope="col">설명</th>
+            </tr>
+          </thead>
+          <tbody id="instances-body">
+            <tr>
+              <td colspan="4">데이터를 불러오는 중입니다…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer class="page-footer">
+    <p>데이터는 <code>data/instances.json</code> 파일을 직접 수정해 갱신할 수 있습니다.</p>
+  </footer>
+  <script src="js/render.js" defer></script>
+</body>
+</html>
