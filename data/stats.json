@@ -1,30 +1,142 @@
 [
   {
-    "host": "mustard.example",
+    "host": "mastodon.social",
     "verified_activitypub": true,
     "software": {
       "name": "mastodon",
-      "version": "4.2.7"
+      "version": "4.5.0-rc.3"
     },
     "open_registrations": true,
-    "users_total": 1234,
-    "users_active_month": 321,
-    "statuses": 98765,
-    "languages_detected": ["ko", "en"],
-    "fetched_at": "2024-01-01T00:00:00Z"
+    "users_total": 2947184,
+    "users_active_month": 257831,
+    "statuses": 152312490,
+    "languages_detected": [],
+    "fetched_at": "2025-11-06T11:16:36Z"
   },
   {
-    "host": "gamgyul.example",
-    "verified_activitypub": false,
+    "host": "mstdn.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.4.1"
+    },
+    "open_registrations": true,
+    "users_total": 266921,
+    "users_active_month": 11313,
+    "statuses": 21596594,
+    "languages_detected": [],
+    "fetched_at": "2025-11-06T11:16:36Z"
+  },
+  {
+    "host": "fosstodon.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.4.8"
+    },
+    "open_registrations": false,
+    "users_total": 62486,
+    "users_active_month": 8393,
+    "statuses": 4486114,
+    "languages_detected": [],
+    "fetched_at": "2025-11-06T11:16:36Z"
+  },
+  {
+    "host": "misskey.io",
+    "verified_activitypub": true,
     "software": {
       "name": "misskey",
-      "version": null
+      "version": "2024.5.0-io.10"
     },
-    "open_registrations": null,
-    "users_total": null,
+    "open_registrations": true,
+    "users_total": 683422,
     "users_active_month": null,
-    "statuses": null,
+    "statuses": 141056524,
     "languages_detected": [],
-    "fetched_at": "2024-01-01T00:00:00Z"
+    "fetched_at": "2025-11-06T11:16:36Z"
+  },
+  {
+    "host": "lemmy.ml",
+    "verified_activitypub": true,
+    "software": {
+      "name": "lemmy",
+      "version": "0.19.13"
+    },
+    "open_registrations": true,
+    "users_total": 56131,
+    "users_active_month": 2095,
+    "statuses": 181469,
+    "languages_detected": [],
+    "fetched_at": "2025-11-06T11:16:36Z"
+  },
+  {
+    "host": "mastodon.online",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.0-rc.3"
+    },
+    "open_registrations": false,
+    "users_total": 189116,
+    "users_active_month": 8729,
+    "statuses": 11498084,
+    "languages_detected": [],
+    "fetched_at": "2025-11-06T11:16:36Z"
+  },
+  {
+    "host": "social.tchncs.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.4.8"
+    },
+    "open_registrations": true,
+    "users_total": 23113,
+    "users_active_month": 3562,
+    "statuses": 3888031,
+    "languages_detected": [],
+    "fetched_at": "2025-11-06T11:16:36Z"
+  },
+  {
+    "host": "qdon.space",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.6.0-alpha.1+qdon.glitch"
+    },
+    "open_registrations": true,
+    "users_total": 3708,
+    "users_active_month": 290,
+    "statuses": 816857,
+    "languages_detected": [],
+    "fetched_at": "2025-11-06T11:16:36Z"
+  },
+  {
+    "host": "discuss.koyu.space",
+    "verified_activitypub": true,
+    "software": {
+      "name": "lemmy",
+      "version": "0.19.12"
+    },
+    "open_registrations": true,
+    "users_total": 6,
+    "users_active_month": 0,
+    "statuses": 6,
+    "languages_detected": [],
+    "fetched_at": "2025-11-06T11:16:36Z"
+  },
+  {
+    "host": "metalhead.club",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.4.8"
+    },
+    "open_registrations": true,
+    "users_total": 5892,
+    "users_active_month": 713,
+    "statuses": 673928,
+    "languages_detected": [],
+    "fetched_at": "2025-11-06T11:16:36Z"
   }
 ]

@@ -56,9 +56,9 @@
     "languages": ["ko", "en"]
   },
   {
-    "name": "koyu.space",
-    "url": "https://koyu.space",
-    "platform": "Mastodon",
+    "name": "discuss.koyu.space",
+    "url": "https://discuss.koyu.space",
+    "platform": "Lemmy",
     "description": "‘좋은 사람들’ 커뮤니티 지향 인스턴스",
     "languages": ["en"]
   },
