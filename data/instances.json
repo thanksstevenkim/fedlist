@@ -1,0 +1,42 @@
+[
+  {
+    "name": "머스타드",
+    "host": "mustard.example",
+    "url": "https://mustard.example",
+    "platform": "Mastodon",
+    "description": "한국 커뮤니티 지향",
+    "languages": ["ko"]
+  },
+  {
+    "name": "감귤",
+    "host": "gamgyul.example",
+    "url": "https://gamgyul.example",
+    "platform": "Misskey",
+    "description": "취미 중심",
+    "languages": ["ko", "en"]
+  },
+  {
+    "name": "소금",
+    "host": "salt.example",
+    "url": "https://salt.example",
+    "platform": "Mastodon",
+    "description": "잡담 위주",
+    "languages": ["ko"]
+  },
+  {
+    "name": "산들",
+    "host": "sandeul.example",
+    "url": "https://sandeul.example",
+    "platform": "Misskey",
+    "description": "개발자 친화",
+    "languages": ["ko", "ja"]
+  },
+  {
+    "name": "달빛",
+    "host": "dalbit.example",
+    "url": "https://dalbit.example",
+    "platform": "Mastodon",
+    "description": "사진/아트",
+    "languages": ["ko"]
+  }
+]

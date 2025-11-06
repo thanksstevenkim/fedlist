@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" data-locale="ko">
+    <header class="page-header">
+      <h1 id="page-title"></h1>
+      <p id="page-intro"></p>
+    </header>
+    <main>
+      <section aria-labelledby="directory-title">
+        <h2 id="directory-title" class="sr-only"></h2>
+        <form id="filterForm" class="filter-bar" role="search">
+          <div class="filter-field">
+            <label for="q" id="searchLabel"></label>
+            <input type="search" id="q" name="q" autocomplete="off" />
+          </div>
+          <div class="filter-field filter-field--narrow">
+            <label for="platformFilter" id="platformLabel"></label>
+            <select id="platformFilter" name="platform"></select>
+          </div>
+        </form>
+        <div class="table-container">
+          <table id="instances-table">
+            <caption id="tableCaption"></caption>
+            <thead>
+              <tr>
+                <th scope="col" data-column="name"></th>
+                <th scope="col" data-column="url"></th>
+                <th scope="col" data-column="platform"></th>
+                <th scope="col" data-column="registration"></th>
+                <th scope="col" data-column="languages"></th>
+                <th scope="col" data-column="users_total" data-sort-key="users_total">
+                  <button type="button"></button>
+                </th>
+                <th scope="col" data-column="users_active_month" data-sort-key="users_active_month">
+                  <button type="button"></button>
+                </th>
+                <th scope="col" data-column="statuses"></th>
+              </tr>
+            </thead>
+            <tbody id="instances-body">
+              <tr>
+                <td colspan="8"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <p id="footer-note"></p>
+    </footer>
+  </div>
+  <script src="js/render.js" defer></script>
+</body>
+</html>

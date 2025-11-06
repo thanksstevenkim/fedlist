@@ -1,0 +1,30 @@
+[
+  {
+    "host": "mustard.example",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.2.7"
+    },
+    "open_registrations": true,
+    "users_total": 1234,
+    "users_active_month": 321,
+    "statuses": 98765,
+    "languages_detected": ["ko", "en"],
+    "fetched_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "host": "gamgyul.example",
+    "verified_activitypub": false,
+    "software": {
+      "name": "misskey",
+      "version": null
+    },
+    "open_registrations": null,
+    "users_total": null,
+    "users_active_month": null,
+    "statuses": null,
+    "languages_detected": [],
+    "fetched_at": "2024-01-01T00:00:00Z"
+  }
+]
