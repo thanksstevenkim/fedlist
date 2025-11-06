@@ -7,11 +7,11 @@
       "version": "4.5.0-rc.3"
     },
     "open_registrations": true,
-    "users_total": 2947217,
+    "users_total": 2947241,
     "users_active_month": 257831,
-    "statuses": 152316139,
+    "statuses": 152318746,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   },
   {
     "host": "mstdn.social",
@@ -21,11 +21,11 @@
       "version": "4.4.1"
     },
     "open_registrations": true,
-    "users_total": 266921,
+    "users_total": 266924,
     "users_active_month": 11313,
-    "statuses": 21596594,
+    "statuses": 21596855,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   },
   {
     "host": "fosstodon.org",
@@ -37,9 +37,9 @@
     "open_registrations": false,
     "users_total": 62486,
     "users_active_month": 8393,
-    "statuses": 4486114,
+    "statuses": 4486134,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   },
   {
     "host": "misskey.io",
@@ -49,11 +49,11 @@
       "version": "2024.5.0-io.10"
     },
     "open_registrations": true,
-    "users_total": 683425,
+    "users_total": 683432,
     "users_active_month": null,
-    "statuses": 141058311,
+    "statuses": 141063338,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   },
   {
     "host": "lemmy.ml",
@@ -65,9 +65,9 @@
     "open_registrations": true,
     "users_total": 56131,
     "users_active_month": 2095,
-    "statuses": 181469,
+    "statuses": 181471,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   },
   {
     "host": "mastodon.online",
@@ -79,9 +79,9 @@
     "open_registrations": false,
     "users_total": 189116,
     "users_active_month": 8729,
-    "statuses": 11498192,
+    "statuses": 11498290,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   },
   {
     "host": "social.tchncs.de",
@@ -93,9 +93,9 @@
     "open_registrations": true,
     "users_total": 23113,
     "users_active_month": 3562,
-    "statuses": 3888031,
+    "statuses": 3888148,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   },
   {
     "host": "qdon.space",
@@ -107,9 +107,9 @@
     "open_registrations": true,
     "users_total": 3708,
     "users_active_month": 290,
-    "statuses": 816857,
+    "statuses": 816909,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   },
   {
     "host": "discuss.koyu.space",
@@ -123,7 +123,7 @@
     "users_active_month": 0,
     "statuses": 6,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   },
   {
     "host": "metalhead.club",
@@ -135,8 +135,8 @@
     "open_registrations": true,
     "users_total": 5892,
     "users_active_month": 713,
-    "statuses": 673928,
+    "statuses": 673942,
     "languages_detected": [],
-    "fetched_at": "2025-11-06T11:31:54Z"
+    "fetched_at": "2025-11-06T12:05:13Z"
   }
 ]
