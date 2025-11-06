@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://mustard.example",
+    "users_total": 1234,
+    "users_active_month": 321,
+    "statuses": 98765,
+    "fetched_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "url": "https://gamgyul.example",
+    "users_total": 876,
+    "users_active_month": 210,
+    "statuses": 54321,
+    "fetched_at": "2024-01-01T00:00:00Z"
+  }
+]

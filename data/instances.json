@@ -1,0 +1,32 @@
+[
+  {
+    "name": "머스타드",
+    "url": "https://mustard.example",
+    "platform": "Mastodon",
+    "description": "한국 커뮤니티 지향"
+  },
+  {
+    "name": "감귤",
+    "url": "https://gamgyul.example",
+    "platform": "Misskey",
+    "description": "취미 중심"
+  },
+  {
+    "name": "소금",
+    "url": "https://salt.example",
+    "platform": "Mastodon",
+    "description": "잡담 위주"
+  },
+  {
+    "name": "산들",
+    "url": "https://sandeul.example",
+    "platform": "Misskey",
+    "description": "개발자 친화"
+  },
+  {
+    "name": "달빛",
+    "url": "https://dalbit.example",
+    "platform": "Mastodon",
+    "description": "사진/아트"
+  }
+]
