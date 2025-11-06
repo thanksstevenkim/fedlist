@@ -1,42 +1,72 @@
 [
   {
-    "name": "머스타드",
-    "host": "mustard.example",
-    "url": "https://mustard.example",
+    "name": "mastodon.social",
+    "url": "https://mastodon.social",
     "platform": "Mastodon",
-    "description": "한국 커뮤니티 지향",
-    "languages": ["ko"]
+    "description": "공식 Mastodon 인스턴스",
+    "languages": ["en"]
   },
   {
-    "name": "감귤",
-    "host": "gamgyul.example",
-    "url": "https://gamgyul.example",
+    "name": "mstdn.social",
+    "url": "https://mstdn.social",
+    "platform": "Mastodon",
+    "description": "비교적 활동 많은 영어권 인스턴스",
+    "languages": ["en"]
+  },
+  {
+    "name": "fosstodon.org",
+    "url": "https://fosstodon.org",
+    "platform": "Mastodon",
+    "description": "오픈소스·기술 중심 커뮤니티 인스턴스",
+    "languages": ["en"]
+  },
+  {
+    "name": "misskey.io",
+    "url": "https://misskey.io",
     "platform": "Misskey",
-    "description": "취미 중심",
+    "description": "Misskey 공식 인스턴스",
+    "languages": ["ja", "en"]
+  },
+  {
+    "name": "lemmy.ml",
+    "url": "https://lemmy.ml",
+    "platform": "Lemmy",
+    "description": "Lemmy(포럼형 Fediverse) 대표 인스턴스",
+    "languages": ["en"]
+  },
+  {
+    "name": "mastodon.online",
+    "url": "https://mastodon.online",
+    "platform": "Mastodon",
+    "description": "다국어 지원 Mastodon 인스턴스",
+    "languages": ["en", "es", "fr"]
+  },
+  {
+    "name": "social.tchncs.de",
+    "url": "https://social.tchncs.de",
+    "platform": "Mastodon",
+    "description": "독일어권 테크-커뮤니티 인스턴스",
+    "languages": ["de"]
+  },
+  {
+    "name": "qdon.space",
+    "url": "https://qdon.space",
+    "platform": "Mastodon",
+    "description": "한국어 사용자 일부 있는 인스턴스",
     "languages": ["ko", "en"]
   },
   {
-    "name": "소금",
-    "host": "salt.example",
-    "url": "https://salt.example",
-    "platform": "Mastodon",
-    "description": "잡담 위주",
-    "languages": ["ko"]
+    "name": "discuss.koyu.space",
+    "url": "https://discuss.koyu.space",
+    "platform": "Lemmy",
+    "description": "‘좋은 사람들’ 커뮤니티 지향 인스턴스",
+    "languages": ["en"]
   },
   {
-    "name": "산들",
-    "host": "sandeul.example",
-    "url": "https://sandeul.example",
-    "platform": "Misskey",
-    "description": "개발자 친화",
-    "languages": ["ko", "ja"]
-  },
-  {
-    "name": "달빛",
-    "host": "dalbit.example",
-    "url": "https://dalbit.example",
+    "name": "metalhead.club",
+    "url": "https://metalhead.club",
     "platform": "Mastodon",
-    "description": "사진/아트",
-    "languages": ["ko"]
+    "description": "음악/메탈 팬 중심 영어권 인스턴스",
+    "languages": ["en"]
   }
 ]
