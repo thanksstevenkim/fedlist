@@ -73,6 +73,31 @@ def _looks_like_binary(url: str) -> bool:
     return any(path.endswith(suf) for suf in BLOCKED_SUFFIXES)
 
 
+def looks_like_nodeinfo(doc: Any) -> bool:
+    """
+    최소 요건:
+      - dict여야 함
+      - software.name 존재
+      - version이 문자열(권장) — 일부 서버는 숫자도 주므로 관대하게 처리
+      - (선택) protocols가 list면 문자열 요소들
+    """
+    if not isinstance(doc, dict):
+        return False
+    sw = doc.get("software")
+    if not isinstance(sw, dict):
+        return False
+    name = sw.get("name")
+    if not isinstance(name, str) or not name.strip():
+        return False
+
+    ver = doc.get("version")
+    if ver is None:
+        # 버전 없이 배포되는 케이스가 드물게 있으므로 관대 승
+        return True
+    if isinstance(ver, (str, int, float)):
+        return True
+    return False
+
 def _assert_safe_url(url: str, host: str) -> None:
     # 동일 호스트 아니거나, 의심 확장자면 차단
     if not _same_host(url, host):
@@ -410,25 +435,18 @@ def is_anomalous(record: Dict[str, Any]) -> bool:
         return True
     return False
 
-
 def classify_record(record: Dict[str, Any], had_errors: bool) -> str:
-    """
-    Return 'good' or 'bad' based on verification, anomalies, and basic metric presence.
-    """
-    if not record.get("verified_activitypub"):
-        return "bad"
-    if had_errors:
-        return "bad"
-    if is_anomalous(record):
-        return "bad"
-
-    # at least one meaningful metric present
-    if any(record.get(k) is not None for k in ("users_total", "users_active_month", "statuses")):
-        return "good"
-
-    # verified but entirely metric-less -> treat as bad to keep OK file clean
-    return "bad"
-
+   """
+    정책 단순화:
+      - NodeInfo가 '제대로' 있으면 OK
+      - 단, 수치가 명백히 비정상이면 BAD
+      - NodeInfo 자체가 없거나 실패하면 BAD
+   """
+   if not record.get("verified_activitypub"):
+       return "bad"
+   if is_anomalous(record):
+       return "bad"
+   return "good"
 
 # -------------------------------
 # Loading inputs
@@ -577,7 +595,7 @@ def process_instance(instance: Instance, timestamp: str) -> Tuple[Dict[str, Any]
         errors.append(f"nodeinfo: {exc}")
         nodeinfo = None
 
-    if nodeinfo:
+    if nodeinfo and looks_like_nodeinfo(nodeinfo):
         record["verified_activitypub"] = True
         update_software(record, nodeinfo.get("software", {}))
         update_open_registrations(record, nodeinfo.get("openRegistrations"))
@@ -590,6 +608,8 @@ def process_instance(instance: Instance, timestamp: str) -> Tuple[Dict[str, Any]
 
         append_languages(languages, languages_seen, usage.get("languages") if isinstance(usage, dict) else None)
         peers.update(extract_peer_hosts_from_nodeinfo(nodeinfo))
+    elif nodeinfo:
+        errors.append("nodeinfo: invalid format")
 
     # ── 여기서 base_url을 결정: NodeInfo가 가리킨 캐노니컬 우선 ──
     base_url = canonical_base or instance.url
@@ -632,7 +652,7 @@ def process_instance(instance: Instance, timestamp: str) -> Tuple[Dict[str, Any]
         else:
             record["verified_activitypub"] = True
     elif platform != "unknown":
-        errors.append(f"unsupported platform: {platform}")
+        pass  # 알 수 없는 플랫폼은 스킵
 
     if platform_data:
         update_software(record, platform_data.get("software", {}))
