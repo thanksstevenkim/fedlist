@@ -132165,6 +132165,21 @@
     "fetched_at": "2025-11-11T05:49:20Z"
   },
   {
+    "host": "gotosocial.gts.hazmat.jacksonchen666.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 592,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z",
+    "redirected_from": "gts.hazmat.jacksonchen666.com"
+  },
+  {
     "host": "gotosocial.gundan.es",
     "verified_activitypub": true,
     "software": {
@@ -134391,6 +134406,174 @@
     "fetched_at": "2025-11-11T05:49:20Z"
   },
   {
+    "host": "gts.asthalter.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 9,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.astolfo.cool",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.17.3+git-6f4cb2f"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 335,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.authorhelp.uk",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 660,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.average.name",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 571,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.awfulwoman.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 9,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.aylamz.me",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.2+git-90851fc"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 5699,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.aznas.eu.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.16.0+git-f1cbf6f"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 305,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.b0nfire.xyz",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 434,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.banerpub.xyz",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0-rc1+git-8221628"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 15,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.bassbins.no",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 22,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.bekserver.xyz",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0+git-baf2c54"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 2,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.biscuits.coffee",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 7,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.blahaj.pl",
     "verified_activitypub": true,
     "software": {
@@ -134404,6 +134587,20 @@
     "languages_detected": [],
     "fetched_at": "2025-11-10T05:06:40Z",
     "redirected_from": "blahaj.pl"
+  },
+  {
+    "host": "gts.bln41.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 1254,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.bo0.tz",
@@ -134421,6 +134618,34 @@
     "redirected_from": "bo0.tz"
   },
   {
+    "host": "gts.bodged.systems",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0+git-baf2c54"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 10438,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.bread-z.one",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 8364,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.brothertec.eu",
     "verified_activitypub": true,
     "software": {
@@ -134434,6 +134659,76 @@
     "languages_detected": [],
     "fetched_at": "2025-11-10T08:55:05Z",
     "redirected_from": "brothertec.eu"
+  },
+  {
+    "host": "gts.brunofontes.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.17.3+git-6f4cb2f"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 84,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.builtdiff.space",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0+git-baf2c54"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 1,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.burning.homes",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0-rc1-bf5+git-3397a09"
+    },
+    "open_registrations": true,
+    "users_total": 10,
+    "users_active_month": null,
+    "statuses": 2051,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.cairobraga.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 6138,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.calayucu.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": false,
+    "users_total": 334554,
+    "users_active_month": 272844,
+    "statuses": 8065467,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.callwall.xyz",
@@ -134451,6 +134746,34 @@
     "redirected_from": "callwall.xyz"
   },
   {
+    "host": "gts.camnet.site",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": true,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 102,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.cattaur.space",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0+git-baf2c54"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 909,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.cazzaserver.com",
     "verified_activitypub": true,
     "software": {
@@ -134464,6 +134787,20 @@
     "languages_detected": [],
     "fetched_at": "2025-11-10T08:55:05Z",
     "redirected_from": "cazzaserver.com"
+  },
+  {
+    "host": "gts.ccw.icu",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0+git-baf2c54"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 258,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.chaoswit.ch",
@@ -134481,6 +134818,34 @@
     "redirected_from": "chaoswit.ch"
   },
   {
+    "host": "gts.chapek9.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.18.2+git-602d235"
+    },
+    "open_registrations": false,
+    "users_total": 10,
+    "users_active_month": null,
+    "statuses": 14956,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.chimera-linux.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.0+git-ab2044e"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 32,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.chocolatines.org",
     "verified_activitypub": true,
     "software": {
@@ -134494,6 +134859,20 @@
     "languages_detected": [],
     "fetched_at": "2025-11-10T08:55:05Z",
     "redirected_from": "chocolatines.org"
+  },
+  {
+    "host": "gts.churanova.eu",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 5917,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.chuuni.solutions",
@@ -134511,6 +134890,34 @@
     "redirected_from": "chuuni.solutions"
   },
   {
+    "host": "gts.code-feather.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 74,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.codecoffin.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 7,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.codemania.net",
     "verified_activitypub": true,
     "software": {
@@ -134524,6 +134931,34 @@
     "languages_detected": [],
     "fetched_at": "2025-11-10T08:55:05Z",
     "redirected_from": "codemania.net"
+  },
+  {
+    "host": "gts.contexto.space",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "v0.16.0+git-89f0abf"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 39,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.crashmail.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 351,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.ct-maru.mooo.com",
@@ -134541,6 +134976,34 @@
     "redirected_from": "ct-maru.mooo.com"
   },
   {
+    "host": "gts.ctero.dev",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.2+git-90851fc"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 4,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.cupcakerob.nl",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 2938,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.curiouscabbit.social",
     "verified_activitypub": true,
     "software": {
@@ -134554,6 +135017,48 @@
     "languages_detected": [],
     "fetched_at": "2025-11-10T13:36:06Z",
     "redirected_from": "curiouscabbit.social"
+  },
+  {
+    "host": "gts.curttech.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 290,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.cybervalley.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 157,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.cybre.ninja",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 2695,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.d.sh",
@@ -134571,6 +135076,20 @@
     "redirected_from": "d.sh"
   },
   {
+    "host": "gts.da-miez.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 4,
+    "users_active_month": null,
+    "statuses": 3228,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.daevien.com",
     "verified_activitypub": true,
     "software": {
@@ -134584,6 +135103,20 @@
     "languages_detected": [],
     "fetched_at": "2025-11-10T13:36:06Z",
     "redirected_from": "daevien.com"
+  },
+  {
+    "host": "gts.dayl.in",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 6,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.dc09.ru",
@@ -134601,6 +135134,34 @@
     "redirected_from": "dc09.ru"
   },
   {
+    "host": "gts.decafbad.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 28,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.decz.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 92,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.dgregory.dev",
     "verified_activitypub": true,
     "software": {
@@ -134614,6 +135175,34 @@
     "languages_detected": [],
     "fetched_at": "2025-11-11T02:33:27Z",
     "redirected_from": "dgregory.dev"
+  },
+  {
+    "host": "gts.dinn.ca",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 12,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.discountbucketwarehouse.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "v0.16.0+git-89f0abf"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 1,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.djs.to",
@@ -134631,6 +135220,20 @@
     "redirected_from": "djs.to"
   },
   {
+    "host": "gts.doggirl.me",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.0+git-ab2044e"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 1750,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.doll.toys",
     "verified_activitypub": true,
     "software": {
@@ -134644,6 +135247,48 @@
     "languages_detected": [],
     "fetched_at": "2025-11-11T02:33:27Z",
     "redirected_from": "doll.toys"
+  },
+  {
+    "host": "gts.doony.me",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 439,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.dootzone.win",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 113,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.drowsik.party",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 21,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.drweissbrot.net",
@@ -134676,6 +135321,48 @@
     "redirected_from": "dtth.ch"
   },
   {
+    "host": "gts.dubeguitars.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": false,
+    "users_total": 0,
+    "users_active_month": null,
+    "statuses": null,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.easrng.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.15.1-SNAPSHOT+git-45fe295"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 71,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.efdlab.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 16,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.eilhart.cz",
     "verified_activitypub": true,
     "software": {
@@ -134689,6 +135376,20 @@
     "languages_detected": [],
     "fetched_at": "2025-11-11T05:49:20Z",
     "redirected_from": "eilhart.cz"
+  },
+  {
+    "host": "gts.elendia.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.16.0+git-f1cbf6f"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 28,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.elusive.systems",
@@ -134706,6 +135407,20 @@
     "redirected_from": "elusive.systems"
   },
   {
+    "host": "gts.elysium.gay",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": true,
+    "users_total": 0,
+    "users_active_month": null,
+    "statuses": null,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.emptydoll.house",
     "verified_activitypub": true,
     "software": {
@@ -134719,6 +135434,104 @@
     "languages_detected": [],
     "fetched_at": "2025-11-11T05:49:20Z",
     "redirected_from": "emptydoll.house"
+  },
+  {
+    "host": "gts.epigaea.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 1113,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.eunach.scot",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 3993,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.everypizza.im",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 143,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.exile.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 2841,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.exquisite.technology",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.17.3+git-6f4cb2f"
+    },
+    "open_registrations": false,
+    "users_total": 10,
+    "users_active_month": null,
+    "statuses": 8886,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.fedi.town",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "v0.16.0+git-89f0abf"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 2,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.fedifriends.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 3187,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "gts.feisar.eu",
@@ -134751,6 +135564,48 @@
     "redirected_from": "felaktig.casa"
   },
   {
+    "host": "gts.fellr.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": true,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 73,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.fizzycola.xyz",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 1,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.flauschbereich.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.17.3+git-6f4cb2f"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 68,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.flawlesscowboy.xyz",
     "verified_activitypub": true,
     "software": {
@@ -134766,6 +135621,90 @@
     "redirected_from": "flawlesscowboy.xyz"
   },
   {
+    "host": "gts.foxtail.garden",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 539594,
+    "users_active_month": 488562,
+    "statuses": 5493894,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.frndc.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.17.3_3"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 47,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.fyrfli.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 142058,
+    "users_active_month": 9556,
+    "statuses": 4587010,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.genovadalbasso.nohost.me",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 18,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.gestalt.noho.st",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 4,
+    "users_active_month": null,
+    "statuses": 443,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.ghp.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 16,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
     "host": "gts.gitroot.dev",
     "verified_activitypub": true,
     "software": {
@@ -134779,6 +135718,524 @@
     "languages_detected": [],
     "fetched_at": "2025-11-11T05:49:20Z",
     "redirected_from": "gitroot.dev"
+  },
+  {
+    "host": "gts.gluecode.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1_1"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 71,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.goat.rocks",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.5.2 git-c31f219"
+    },
+    "open_registrations": true,
+    "users_total": null,
+    "users_active_month": null,
+    "statuses": null,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.hanntac.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.2+git-90851fc"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 1147,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.hikisan.casa",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 487,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.hotaircat.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.18.3+git-b6e56fe"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 154,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.i80q.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": null,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.iagosto.dev",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.0+git-ab2044e"
+    },
+    "open_registrations": false,
+    "users_total": 6,
+    "users_active_month": null,
+    "statuses": 4,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.icewind.me",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 32,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.ifhub.club",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "v0.20.0+git-d59f8d2"
+    },
+    "open_registrations": false,
+    "users_total": 0,
+    "users_active_month": null,
+    "statuses": null,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.iliazeus.lol",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0+git-baf2c54"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 303,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.interlace.space",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.10.0 git-89ee9d5"
+    },
+    "open_registrations": true,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 16,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.io18.eu",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": null,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.ionchy.ca",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0+git-baf2c54"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 12578,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.itrus.su",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 93294,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.jacqueline.id.au",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.2+git-90851fc"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 44,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.jamesravey.me",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.16.0+git-f1cbf6f"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.kasanwa.name",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 118,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.kehring.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 1,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.kestrels-and-roses.rocks",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 569,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.kloenk.dev",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1"
+    },
+    "open_registrations": false,
+    "users_total": 823563,
+    "users_active_month": 404920,
+    "statuses": 1761876,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.korora.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": true,
+    "users_total": 4,
+    "users_active_month": null,
+    "statuses": 714,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.kviro.ynh.fr",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": true,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 236,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.late2the.party",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.18.1+git-fd670c6"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 1,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lgbt",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": true,
+    "users_total": 4,
+    "users_active_month": null,
+    "statuses": 6283,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lhochet.dev",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 245,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lilnet.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 2,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lilyb.it",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 183,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.linuxfiend.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0+git-baf2c54"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 309,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lob-online.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 655,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.logzinga.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 450,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lowfla.me",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 26,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.luca.run",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0+git-baf2c54"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 10,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lucaa.uk",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.2+git-90851fc"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 8,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lumenkeyes.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.17.3+git-6f4cb2f"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 28,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lusc.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 6,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lylapol.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0-rc2+git-5b95636"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 124,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
+  },
+  {
+    "host": "gts.lyrion.ch",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.0_1"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 1231,
+    "languages_detected": [],
+    "fetched_at": "2025-11-13T13:31:06Z"
   },
   {
     "host": "icenet.cyan.gay",
