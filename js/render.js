@@ -125,8 +125,7 @@
 
     const statsHosts = Array.from(statsMap.keys());
     const manualHosts = Array.from(manualMap.keys());
-    const manualOnlyHosts = manualHosts.filter((host) => !statsMap.has(host));
-    const hosts = statsHosts.length ? [...statsHosts, ...manualOnlyHosts] : manualHosts;
+    const hosts = manualHosts.length ? manualHosts : statsHosts;
 
     baseRows = hosts.reduce((acc, host) => {
       if (!host) {
@@ -142,7 +141,11 @@
       const statsLanguages = Array.isArray(statsEntry?.languages_detected)
         ? statsEntry.languages_detected
         : [];
-      const languages = mergeLanguageLists(manualLanguages, statsLanguages);
+      const languages = mergeLanguageLists(
+        manualLanguages,
+        statsLanguages,
+        detectLanguagesFromText(manualEntry?.description)
+      );
 
       const rawSoftwareName =
         stringOrNull(statsEntry?.software?.name) ?? stringOrNull(manualEntry?.platform);
@@ -592,10 +595,13 @@
     const list = [];
     const seen = new Set();
     values.forEach((value) => {
-      const code = normalizeLanguageCode(value);
-      if (!code || seen.has(code)) return;
-      seen.add(code);
-      list.push(code);
+      const expanded = expandLanguageValue(value);
+      expanded.forEach((item) => {
+        const code = normalizeLanguageCode(item);
+        if (!code || seen.has(code)) return;
+        seen.add(code);
+        list.push(code);
+      });
     });
     return list;
   }
@@ -620,9 +626,62 @@
 
   function normalizeLanguageCode(value) {
     if (value === null || value === undefined) return "";
-    const text = String(value).trim();
+    const text = String(value)
+      .replace(/[;|]/g, ",")
+      .replace(/_/g, "-")
+      .trim();
     if (!text) return "";
-    return text.toLowerCase();
+    const cleaned = text
+      .replace(/[^a-z0-9-]/gi, "-")
+      .replace(/-{2,}/g, "-")
+      .replace(/^-+|-+$/g, "");
+    return cleaned.toLowerCase();
+  }
+
+  function expandLanguageValue(value) {
+    if (Array.isArray(value)) {
+      return value.flatMap((item) => expandLanguageValue(item));
+    }
+    if (value === null || value === undefined) {
+      return [];
+    }
+    const text = String(value)
+      .replace(/[;|]/g, ",")
+      .trim();
+    if (!text) {
+      return [];
+    }
+    return text
+      .split(/[,\s]+/)
+      .map((part) => part.trim())
+      .filter(Boolean);
+  }
+
+  function detectLanguagesFromText(value) {
+    const text = stringOrNull(value);
+    if (!text) {
+      return [];
+    }
+
+    const detectors = [
+      { regex: /[\u1100-\u11ff\u3130-\u318f\uac00-\ud7af]/, code: "ko" },
+      { regex: /[\u3040-\u30ff]/, code: "ja" },
+      { regex: /[\u4e00-\u9fff\u3400-\u4dbf]/, code: "zh" },
+      { regex: /[\u0400-\u04ff]/, code: "ru" },
+      { regex: /[\u0e00-\u0e7f]/, code: "th" },
+      { regex: /[\u0600-\u06ff]/, code: "ar" },
+      { regex: /[\u0900-\u097f]/, code: "hi" },
+      { regex: /[\u0590-\u05ff]/, code: "he" },
+    ];
+
+    const detected = new Set();
+    detectors.forEach(({ regex, code }) => {
+      if (regex.test(text)) {
+        detected.add(code);
+      }
+    });
+
+    return Array.from(detected);
   }
 
   function formatNumber(value) {
@@ -994,12 +1053,30 @@
   }
 
   function resolveAssetBaseUrl() {
-    try {
-      return new URL("./", document.baseURI);
-    } catch (error) {
-      console.warn("문서 기준 경로를 계산할 수 없습니다.", error);
-      return new URL("./", window.location.href);
+    const script = document.currentScript;
+    if (script && script.src) {
+      try {
+        return new URL("../", script.src);
+      } catch (error) {
+        console.warn("스크립트 기준 경로를 계산할 수 없습니다.", error);
+      }
     }
+
+    const baseCandidates = [document.baseURI, window.location.href];
+    for (const candidate of baseCandidates) {
+      if (!candidate) continue;
+      try {
+        const url = new URL(candidate);
+        if (!url.pathname.endsWith("/")) {
+          url.pathname = `${url.pathname}/`;
+        }
+        return url;
+      } catch (error) {
+        console.warn("기준 경로를 계산할 수 없습니다.", error);
+      }
+    }
+
+    return new URL("./", window.location.href);
   }
 
   function resolveAssetUrl(path) {
@@ -1015,12 +1092,28 @@
       return;
     }
 
-    const results = await Promise.all(
-      uniqueHosts.map(async (host) => ({
-        host,
-        details: await fetchNodeInfoDetails(host),
-      }))
-    );
+    const concurrency = Math.min(6, Math.max(1, uniqueHosts.length));
+    let cursor = 0;
+    const results = [];
+
+    async function worker() {
+      while (true) {
+        const index = cursor;
+        if (index >= uniqueHosts.length) {
+          break;
+        }
+        cursor += 1;
+        const host = uniqueHosts[index];
+        try {
+          const details = await fetchInstanceDetails(host);
+          results.push({ host, details });
+        } catch (error) {
+          console.info(`호스트 ${host}의 세부 정보를 불러오지 못했습니다.`, error);
+        }
+      }
+    }
+
+    await Promise.all(Array.from({ length: concurrency }, () => worker()));
 
     let updated = false;
     results.forEach(({ host, details }) => {
@@ -1036,19 +1129,25 @@
         if (row.host !== host) {
           return;
         }
+
         if (description && row.nodeinfoDescription !== description) {
           row.nodeinfoDescription = description;
           updated = true;
         }
 
-        if (languages.length) {
-          const mergedLanguages = mergeLanguageLists(row.languages, languages);
+        const detectedFromDescription = detectLanguagesFromText(
+          description || row.nodeinfoDescription || row.instance?.description
+        );
+        const combinedLanguages = mergeLanguageLists(languages, detectedFromDescription);
+
+        if (combinedLanguages.length) {
+          const mergedLanguages = mergeLanguageLists(row.languages, combinedLanguages);
           if (mergedLanguages.length !== row.languages.length) {
             row.languages = mergedLanguages;
             updated = true;
           }
 
-          const mergedNodeinfo = mergeLanguageLists(row.nodeinfoLanguages, languages);
+          const mergedNodeinfo = mergeLanguageLists(row.nodeinfoLanguages, combinedLanguages);
           if (mergedNodeinfo.length !== row.nodeinfoLanguages.length) {
             row.nodeinfoLanguages = mergedNodeinfo;
           }
@@ -1108,6 +1207,203 @@
     }
 
     return null;
+  }
+
+  async function fetchInstanceDetails(host) {
+    const nodeInfo = await fetchNodeInfoDetails(host);
+    let description = stringOrNull(nodeInfo?.description) ?? null;
+    let languages = Array.isArray(nodeInfo?.languages)
+      ? mergeLanguageLists(nodeInfo.languages)
+      : [];
+
+    if (!description || !languages.length) {
+      const siteMetadata = await fetchSiteMetadata(host, {
+        includeDescription: !description,
+        includeLanguages: !languages.length,
+      });
+
+      if (siteMetadata) {
+        if (!description && siteMetadata.description) {
+          description = siteMetadata.description;
+        }
+        if (Array.isArray(siteMetadata.languages) && siteMetadata.languages.length) {
+          languages = mergeLanguageLists(languages, siteMetadata.languages);
+        }
+      }
+    }
+
+    if (!description && !languages.length) {
+      return null;
+    }
+
+    return {
+      description: description ?? null,
+      languages,
+    };
+  }
+
+  async function fetchSiteMetadata(host, options = {}) {
+    const { includeDescription = true, includeLanguages = true } = options;
+    if (!includeDescription && !includeLanguages) {
+      return null;
+    }
+
+    if (typeof DOMParser !== "function") {
+      return null;
+    }
+
+    const protocols = ["https", "http"];
+
+    for (const protocol of protocols) {
+      const origin = `${protocol}://${host}`;
+
+      try {
+        const response = await fetch(`${origin}/`, {
+          cache: "no-store",
+          mode: "cors",
+        });
+        if (!response.ok) {
+          continue;
+        }
+
+        const contentType = response.headers.get("content-type") || "";
+        if (contentType && !contentType.includes("text/html")) {
+          continue;
+        }
+
+        const html = await response.text();
+        if (!html) {
+          continue;
+        }
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        if (!doc) {
+          continue;
+        }
+
+        let description = null;
+        if (includeDescription) {
+          const descriptionSelectors = [
+            'meta[name="description"]',
+            'meta[property="og:description"]',
+            'meta[name="og:description"]',
+            'meta[name="twitter:description"]',
+            'meta[property="twitter:description"]',
+            'meta[name="summary"]',
+          ];
+
+          for (const selector of descriptionSelectors) {
+            const element = doc.querySelector(selector);
+            const content = element?.getAttribute("content");
+            const value = stringOrNull(content);
+            if (value) {
+              description = value;
+              break;
+            }
+          }
+
+          if (!description) {
+            const textContent = doc.querySelector("body");
+            if (textContent) {
+              const candidate = stringOrNull(textContent.textContent);
+              if (candidate) {
+                description = candidate.slice(0, 400);
+              }
+            }
+          }
+        }
+
+        let languages = [];
+        if (includeLanguages) {
+          languages = mergeLanguageLists(languages, collectLanguagesFromDocument(doc));
+          if (!languages.length && description) {
+            languages = mergeLanguageLists(languages, detectLanguagesFromText(description));
+          }
+        }
+
+        if (!description && !languages.length) {
+          continue;
+        }
+
+        return {
+          description: description ?? null,
+          languages,
+        };
+      } catch (error) {
+        continue;
+      }
+    }
+
+    return null;
+  }
+
+  function collectLanguagesFromDocument(doc) {
+    if (!doc) {
+      return [];
+    }
+
+    const collected = new Set();
+    const root = doc.documentElement;
+    if (root) {
+      extractLocalesFromMeta(root.getAttribute("lang")).forEach((code) =>
+        collected.add(code)
+      );
+      extractLocalesFromMeta(root.getAttribute("xml:lang")).forEach((code) =>
+        collected.add(code)
+      );
+    }
+
+    const selectors = [
+      'meta[name="language"]',
+      'meta[name="lang"]',
+      'meta[name="content-language"]',
+      'meta[http-equiv="content-language"]',
+      'meta[name="dc.language"]',
+      'meta[property^="og:locale"]',
+    ];
+
+    selectors.forEach((selector) => {
+      doc.querySelectorAll(selector).forEach((element) => {
+        const content = element.getAttribute("content");
+        extractLocalesFromMeta(content).forEach((code) => collected.add(code));
+      });
+    });
+
+    const htmlAttributes = ["data-lang", "data-locale"];
+    htmlAttributes.forEach((attribute) => {
+      if (root?.hasAttribute(attribute)) {
+        extractLocalesFromMeta(root.getAttribute(attribute)).forEach((code) =>
+          collected.add(code)
+        );
+      }
+    });
+
+    return normalizeLanguageList(Array.from(collected));
+  }
+
+  function extractLocalesFromMeta(value) {
+    if (value === null || value === undefined) {
+      return [];
+    }
+    const text = String(value)
+      .replace(/[;|]/g, ",")
+      .trim();
+    if (!text) {
+      return [];
+    }
+    return text
+      .split(/[,\s]+/)
+      .map((part) => normalizeLocaleTag(part))
+      .filter(Boolean);
+  }
+
+  function normalizeLocaleTag(value) {
+    const text = stringOrNull(value);
+    if (!text) {
+      return "";
+    }
+    return text.replace(/_/g, "-").toLowerCase();
   }
 
   function prioritizeNodeInfoLinks(links) {
