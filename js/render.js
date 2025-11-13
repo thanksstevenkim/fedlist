@@ -2,6 +2,31 @@
   const assetBaseUrl = resolveAssetBaseUrl();
   const locale = document.documentElement.lang || "ko";
   const numberLocale = locale || "ko-KR";
+
+  const KNOWN_SOFTWARE_LABELS = {
+    akkoma: "아콤마",
+    bookwyrm: "BookWyrm",
+    calckey: "Calckey",
+    firefish: "파이어피쉬",
+    friendica: "Friendica",
+    funkwhale: "Funkwhale",
+    ghost: "고스트",
+    gotosocial: "고투소셜",
+    hubzilla: "Hubzilla",
+    kbin: "Kbin",
+    lemmy: "렘미",
+    mastodon: "마스토돈",
+    misskey: "미스키",
+    peertube: "피어튜브",
+    pixelfed: "픽셀페드",
+    pleroma: "플레로마",
+    sharkey: "Sharkey",
+    streams: "Streams",
+    takahe: "Takahē",
+    wordpress: "워드프레스",
+    writefreely: "WriteFreely",
+  };
+
   const FALLBACK_STRINGS = {
     ko: {
       title: "연합우주를 여행하는 히치하이커를 위한 안내서",
@@ -11,15 +36,6 @@
       software_filter_heading: "소프트웨어 분류",
       software_all: "전체 소프트웨어",
       software_unknown: "기타",
-      software_label_mastodon: "마스토돈",
-      software_label_misskey: "미스키",
-      software_label_pleroma: "플레로마",
-      software_label_akkoma: "아콤마",
-      software_label_firefish: "파이어피쉬",
-      platform_filter_label: "플랫폼",
-      platform_all: "전체",
-      platform_mastodon: "Mastodon",
-      platform_misskey: "Misskey",
       language_filter_label: "언어",
       language_all: "전체 언어",
       table_heading: "인스턴스 목록",
@@ -48,6 +64,12 @@
       sort_users_total: "총 사용자 수로 정렬",
       sort_users_active: "월간 활성 사용자 수로 정렬",
       footer_note: "데이터는 data/instances.json과 data/stats.ok.json 파일을 수정해 갱신할 수 있습니다.",
+      ...Object.fromEntries(
+        Object.entries(KNOWN_SOFTWARE_LABELS).map(([key, label]) => [
+          `software_label_${key}`,
+          label,
+        ])
+      ),
     },
   };
 
@@ -939,6 +961,9 @@
       const translationKey = `software_label_${normalized}`;
       if (translationKey in dict && stringOrNull(dict[translationKey])) {
         return dict[translationKey];
+      }
+      if (normalized in KNOWN_SOFTWARE_LABELS) {
+        return KNOWN_SOFTWARE_LABELS[normalized];
       }
     }
 
