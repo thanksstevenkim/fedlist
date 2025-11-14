@@ -4,10 +4,10 @@
   const numberLocale = locale || "ko-KR";
 
   const KNOWN_SOFTWARE_LABELS = {
-    akkoma: "아코마",
+    akkoma: "Akkoma",
     bookwyrm: "BookWyrm",
     calckey: "Calckey",
-    firefish: "파이어피쉬",
+    firefish: "Firefish",
     friendica: "Friendica",
     funkwhale: "Funkwhale",
     ghost: "Ghost",
@@ -16,14 +16,14 @@
     kbin: "Kbin",
     lemmy: "Lemmy",
     mastodon: "마스토돈",
-    misskey: "미스키",
+    misskey: "Misskey",
     peertube: "PeerTube",
     pixelfed: "PixelFed",
     pleroma: "Pleroma",
     sharkey: "Sharkey",
     streams: "Streams",
     takahe: "Takahē",
-    wordpress: "워드프레스",
+    wordpress: "WordPress",
     writefreely: "WriteFreely",
   };
 
@@ -125,7 +125,7 @@
 
     const statsHosts = Array.from(statsMap.keys());
     const manualHosts = Array.from(manualMap.keys());
-    const hosts = manualHosts.length ? manualHosts : statsHosts;
+    const hosts = statsHosts.length ? statsHosts : manualHosts;
 
     baseRows = hosts.reduce((acc, host) => {
       if (!host) {
