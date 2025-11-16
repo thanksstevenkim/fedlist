@@ -30,6 +30,12 @@
             <label for="languageFilter" id="languageLabel"></label>
             <select id="languageFilter" name="language"></select>
           </div>
+          <div class="filter-field filter-field--checkbox">
+            <label>
+              <input type="checkbox" id="showClosedFilter" name="showClosed" />
+              <span id="showClosedLabel"></span>
+            </label>
+          </div>
         </form>
         <div class="table-container">
           <table id="instances-table">
@@ -39,7 +45,6 @@
                 <th scope="col" data-column="name"></th>
                 <th scope="col" data-column="url"></th>
                 <th scope="col" data-column="platform"></th>
-                <th scope="col" data-column="registration"></th>
                 <th scope="col" data-column="languages"></th>
                 <th scope="col" data-column="users_total" data-sort-key="users_total">
                   <button type="button"></button>
@@ -52,7 +57,7 @@
             </thead>
             <tbody id="instances-body">
               <tr>
-                <td colspan="8"></td>
+                <td colspan="7"></td>
               </tr>
             </tbody>
           </table>

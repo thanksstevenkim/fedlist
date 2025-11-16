@@ -39,6 +39,8 @@
       language_filter_label: "언어",
       language_all: "전체 언어",
       table_heading: "인스턴스 목록",
+      show_closed_label: "가입 닫힌 서버 표시",
+      badge_open: "가입 열림",
       table_caption: "한국어 Fediverse 인스턴스 목록",
       table_aria: "한국어 Fediverse 인스턴스 목록",
       name: "이름",
@@ -85,6 +87,8 @@
     searchLabel: document.getElementById("searchLabel"),
     languageSelect: document.getElementById("languageFilter"),
     languageLabel: document.getElementById("languageLabel"),
+    showClosedFilter: document.getElementById("showClosedFilter"),
+    showClosedLabel: document.getElementById("showClosedLabel"),
     softwareList: document.getElementById("softwareFilter"),
     softwareHeading: document.getElementById("softwareFilterTitle"),
     filterForm: document.getElementById("filterForm"),
@@ -96,12 +100,12 @@
     return;
   }
 
-  const columnCount = elements.table.querySelectorAll("thead th").length || 8;
+  const columnCount = elements.table.querySelectorAll("thead th").length || 7;
 
   const stringsData = await loadStrings();
   const strings = resolveStrings(stringsData, locale);
 
-  const filters = { query: "", software: "all", language: "all" };
+  const filters = { query: "", software: "all", language: "all", showClosed: false };
   const sortState = { key: null, direction: "desc" };
   let baseRows = [];
 
@@ -217,6 +221,13 @@
       });
     }
 
+    if (elements.showClosedFilter) {
+      elements.showClosedFilter.addEventListener("change", () => {
+        filters.showClosed = elements.showClosedFilter.checked;
+        updateDisplay();
+      });
+    }
+
     if (elements.softwareList) {
       elements.softwareList.addEventListener("click", (event) => {
         const button = event.target.closest("button[data-software]");
@@ -272,7 +283,7 @@
 
   function filterRows(rows) {
     return rows.filter((row) => {
-      const { instance, nodeinfoDescription, languages = [], softwareKey } = row;
+      const { instance, nodeinfoDescription, languages = [], softwareKey, stats } = row;
 
       const matchesSoftware =
         filters.software === "all" || softwareKey === filters.software;
@@ -287,6 +298,14 @@
 
       if (!matchesLanguage) {
         return false;
+      }
+
+      // 가입 상태 필터: showClosed가 false일 때는 가입 열린 서버만 표시
+      if (!filters.showClosed) {
+        const isOpen = stats && stats.open_registrations === true;
+        if (!isOpen) {
+          return false;
+        }
       }
 
       if (!filters.query) {
@@ -381,9 +400,15 @@
       nameHeading.className = "cell-name__title";
       nameHeading.textContent = textOrFallback(instance.name);
 
-      const badge = createVerificationBadge(stats, strings);
-      if (badge) {
-        nameHeading.appendChild(badge);
+      const verificationBadge = createVerificationBadge(stats, strings);
+      if (verificationBadge) {
+        nameHeading.appendChild(verificationBadge);
+      }
+
+      // 가입 열림 배지 추가
+      const openBadge = createOpenRegistrationBadge(stats, strings);
+      if (openBadge) {
+        nameHeading.appendChild(openBadge);
       }
 
       nameCell.appendChild(nameHeading);
@@ -412,13 +437,6 @@
       const platformCell = document.createElement("td");
       platformCell.textContent = textOrFallback(softwareLabel ?? instance.platform);
 
-      const registrationCell = document.createElement("td");
-      const registrationSummary = formatRegistration(stats, strings);
-      registrationCell.textContent = registrationSummary;
-      if (registrationSummary && registrationSummary !== strings.no_data) {
-        registrationCell.title = registrationSummary;
-      }
-
       const languagesCell = document.createElement("td");
       languagesCell.textContent = formatLanguages(entry, strings);
 
@@ -435,7 +453,6 @@
         nameCell,
         urlCell,
         platformCell,
-        registrationCell,
         languagesCell,
         usersTotalCell,
         usersActiveCell,
@@ -735,6 +752,18 @@
     return null;
   }
 
+  function createOpenRegistrationBadge(stats, dict) {
+    if (!stats || typeof stats !== "object") return null;
+    if (stats.open_registrations === true) {
+      const badge = document.createElement("span");
+      badge.className = "badge badge--open";
+      badge.textContent = dict.badge_open;
+      badge.title = dict.badge_open;
+      return badge;
+    }
+    return null;
+  }
+
   function formatRegistration(stats, dict) {
     if (!stats || typeof stats !== "object") {
       return dict.no_data;
@@ -851,6 +880,9 @@
       elements.languageSelect.value = "all";
       filters.language = "all";
     }
+    if (elements.showClosedLabel) {
+      elements.showClosedLabel.textContent = dict.show_closed_label;
+    }
     if (elements.softwareHeading) {
       elements.softwareHeading.textContent = dict.software_filter_heading;
     }
@@ -859,7 +891,6 @@
     setColumnText("name", dict.name);
     setColumnText("url", dict.url);
     setColumnText("platform", dict.platform);
-    setColumnText("registration", dict.registration);
     setColumnText("languages", dict.languages);
     setColumnText("users_total", dict.users_total, dict.sort_users_total);
     setColumnText("users_active_month", dict.users_active, dict.sort_users_active);
