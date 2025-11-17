@@ -426,6 +426,57 @@ a:focus {
   border: 0;
 }
 
+.sidebar__sublist {
+  padding-left: 1rem;
+  margin-top: 0.3rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.sidebar__button--child {
+  font-weight: 500;
+  font-size: 0.9rem;
+  background: none;
+}
+
+.sidebar__section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0.6rem 0 0.2rem;
+  padding: 0 0.2rem;
+  color: #64748b;
+}
+
+.sidebar__button {
+  position: relative;
+}
+
+.sidebar__toggle {
+  margin-right: 0.35rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.sidebar__pin {
+  margin-left: 0.4rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.sidebar__pin:hover {
+  opacity: 1;
+}
+
+/* 접힌 상태에서 자식 리스트 숨김 */
+.sidebar__item--collapsed > .sidebar__sublist {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .filter-field,
   .filter-field--narrow {

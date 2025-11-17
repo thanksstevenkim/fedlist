@@ -30,7 +30,8 @@
   const FALLBACK_STRINGS = {
     ko: {
       title: "연합우주를 여행하는 히치하이커를 위한 안내서",
-      intro: "한국어로 운영되는 페디버스 인스턴스를 수동으로 정리한 목록입니다.",
+      intro:
+        "한국어로 운영되는 페디버스 인스턴스를 수동으로 정리한 목록입니다.",
       search_label: "검색어",
       search_placeholder: "이름 또는 설명 검색",
       software_filter_heading: "소프트웨어 분류",
@@ -65,7 +66,8 @@
         "데이터를 불러오는 중 오류가 발생했습니다. 로컬에서 테스트하는 경우 <code>python -m http.server</code>로 간단한 서버를 실행하세요.",
       sort_users_total: "총 사용자 수로 정렬",
       sort_users_active: "월간 활성 사용자 수로 정렬",
-      footer_note: "데이터는 data/instances.json과 data/stats.ok.json 파일을 수정해 갱신할 수 있습니다.",
+      footer_note:
+        "데이터는 data/instances.json과 data/stats.ok.json 파일을 수정해 갱신할 수 있습니다.",
       ...Object.fromEntries(
         Object.entries(KNOWN_SOFTWARE_LABELS).map(([key, label]) => [
           `software_label_${key}`,
@@ -105,9 +107,186 @@
   const stringsData = await loadStrings();
   const strings = resolveStrings(stringsData, locale);
 
-  const filters = { query: "", software: "all", language: "all", showClosed: false };
+  const filters = {
+    query: "",
+    software: "all",
+    language: "all",
+    showClosed: false,
+  };
   const sortState = { key: null, direction: "desc" };
   let baseRows = [];
+
+  const pinnedSoftware = loadPinnedSoftware();
+  let openParent = null; // 하나만 펼쳐둔다
+
+  const SOFTWARE_ORDER = [
+    "mastodon",
+    "misskey",
+    "pleroma",
+    "pixelfed",
+    "lemmy",
+    "blog",
+    "bridge",
+    "relay",
+    "social",
+    "video",
+    "unknown",
+    "nextcloud-social",
+  ];
+
+  const SOFTWARE_LINEAGE = {
+    mastodon: ["ecko", "fedibird", "hometown", "kmyblue", "wildebeest"],
+    misskey: [
+      "calckey",
+      "catodon",
+      "cherrypick",
+      "dolphin",
+      "firefish",
+      "foundkey",
+      "hickey",
+      "iceshrimp",
+      "magnetar",
+      "meisskey",
+      "nexkey",
+      "pawkey",
+      "quollkey",
+      "sharkey",
+      "yoiyami",
+      "yojo-art",
+    ],
+    pleroma: [
+      "akkoma",
+      "cagando",
+      "gharab-tzereq",
+      "incestoma",
+      "instance-softwarename",
+    ],
+    lemmy: ["kbin", "mbin"],
+    "nextcloud-social": [
+      "citizen4",
+      "luon-cloud",
+      "simcloud",
+      "the-lukes-cloud",
+    ],
+    blog: [
+      "blog-server",
+      "wordpress",
+      "contentnation",
+      "dch-blog",
+      "forte",
+      "ghost",
+      "hatsu",
+      "hubzilla",
+      "owl-blogs",
+      "ma-at",
+      "monoplace-ca",
+      "microblogpub",
+      "writefreely",
+    ],
+    social: [
+      "98gravity-electro",
+      "amiverse",
+      "bonfire",
+      "bookwyrm",
+      "bovine",
+      "bonfou",
+      "brighteon",
+      "cattle-grid",
+      "comal",
+      "cosmoslide",
+      "ditto",
+      "dope-network",
+      "dumpster-federation",
+      "elgg",
+      "emissary",
+      "encryptr-net",
+      "friendica",
+      "frequency",
+      "funkwhale",
+      "gancio",
+      "gnusocial",
+      "gotosocial",
+      "hollo",
+      "iceshrimp-net",
+      "ktistec",
+      "mammuthus",
+      "plume",
+      "soapbox",
+      "smithereen",
+      "takahe",
+      "wafrn",
+      "wellesley",
+    ],
+    relay: [
+      "activity-relay",
+      "activityrelay",
+      "aoderelay",
+      "awakari",
+      "buzzrelay",
+    ],
+    bridge: [
+      "bird-meetup",
+      "birdsitelive",
+      "bridgy-fed",
+      "ccworld-ap-bridge",
+      "encyclia",
+    ],
+    video: ["loops", "peertube", "owncast"],
+    unknown: [
+      "activitypods",
+      "activity-xsrv-win",
+      "activitypub-rails",
+      "appy",
+      "betula",
+      "bugle",
+      "capubara",
+      "careercupid",
+      "castling-club",
+      "chess-infinito-nexus",
+      "claremontwx",
+      "codename-merp",
+      "d250g2",
+      "dailyrucks",
+      "divedb",
+      "drupal",
+      "dxnet",
+      "eliza-and-the-moneymakers",
+      "fediblock-instance",
+      "fedichatbot",
+      "fedipage",
+      "fedirouter",
+      "fedsy",
+      "flohmarkt",
+      "forgejo",
+      "gathio",
+      "g105b",
+      "gitea",
+      "hanbitfediverse",
+      "hono",
+      "lipupini",
+      "lotide",
+      "manyfold",
+      "meshdags-site-a-dags-dk",
+      "mitra",
+      "mobilizon",
+      "neodb",
+      "nodebb",
+      "octofedi",
+      "openlink-virtuoso",
+      "postmarks",
+      "single-file-activitypub-server-in-php",
+      "snac",
+      "undefined",
+      "piefed",
+      "private",
+      "pub",
+      "squidcity",
+      "sutty-distributed-press",
+      "tiofomento-fedverse-bot",
+      "tootik",
+      "wxwclub",
+    ],
+  };
 
   applyStaticStrings(strings);
   setStatusMessage(strings.loading, { busy: true });
@@ -152,7 +331,8 @@
       );
 
       const rawSoftwareName =
-        stringOrNull(statsEntry?.software?.name) ?? stringOrNull(manualEntry?.platform);
+        stringOrNull(statsEntry?.software?.name) ??
+        stringOrNull(manualEntry?.platform);
       const softwareKey = normalizeSoftwareKey(rawSoftwareName) || "unknown";
       const softwareLabel = resolveSoftwareLabel(
         rawSoftwareName,
@@ -162,7 +342,8 @@
 
       const instance = {
         name: stringOrNull(manualEntry?.name) ?? host,
-        url: stringOrNull(manualEntry?.url) ?? (host ? `https://${host}` : null),
+        url:
+          stringOrNull(manualEntry?.url) ?? (host ? `https://${host}` : null),
         platform: softwareLabel,
         description: stringOrNull(manualEntry?.description),
         languages: manualLanguages,
@@ -194,16 +375,30 @@
     updateDisplay();
 
     preloadNodeInfoDetails(baseRows).catch((error) => {
-      console.info("노드 정보 세부 정보를 불러오는 중 문제가 발생했습니다.", error);
+      console.info(
+        "노드 정보 세부 정보를 불러오는 중 문제가 발생했습니다.",
+        error
+      );
     });
   } catch (error) {
     console.error(error);
     setStatusMessage(strings.error_fetch, { allowHTML: true });
   }
 
+  function findParentSoftware(key) {
+    for (const parent in SOFTWARE_LINEAGE) {
+      if (SOFTWARE_LINEAGE[parent].includes(key)) {
+        return parent;
+      }
+    }
+    return null;
+  }
+
   function bindFilters() {
     if (elements.filterForm) {
-      elements.filterForm.addEventListener("submit", (event) => event.preventDefault());
+      elements.filterForm.addEventListener("submit", (event) =>
+        event.preventDefault()
+      );
     }
 
     if (elements.searchInput) {
@@ -230,18 +425,56 @@
 
     if (elements.softwareList) {
       elements.softwareList.addEventListener("click", (event) => {
+        const toggle = event.target.closest(".sidebar__toggle");
+
+        // 1) 접힘 토글 클릭
+        // 상위 카테고리 토글 (아코디언 방식)
+        if (toggle) {
+          const parentBtn = toggle.closest("button[data-software]");
+          const key = parentBtn?.dataset.software;
+
+          if (!key) return;
+
+          // 이미 열려 있던 parent를 눌렀으면 닫기
+          if (openParent === key) {
+            openParent = null;
+          } else {
+            openParent = key;
+          }
+
+          applyCollapseState();
+          return;
+        }
+
+        // 3) 카테고리 필터 변경
         const button = event.target.closest("button[data-software]");
-        if (!button) {
-          return;
-        }
+        if (!button) return;
+
         const value = button.dataset.software || "all";
-        if (filters.software === value) {
-          return;
-        }
+        if (filters.software === value) return;
+
         filters.software = value;
+
+        // ALL을 누르면 접힘 상태 초기화
+        if (value === "all") {
+          openParent = null;
+          applyCollapseState();
+        }
+
         updateDisplay();
       });
     }
+  }
+
+  function togglePin(key) {
+    if (pinnedSoftware.has(key)) {
+      pinnedSoftware.delete(key);
+    } else {
+      pinnedSoftware.add(key);
+    }
+    savePinnedSoftware();
+    // 사이드바 구조가 바뀌었으니 다시 렌더
+    updateSoftwareSidebar(baseRows, strings);
   }
 
   function bindSorting() {
@@ -283,10 +516,20 @@
 
   function filterRows(rows) {
     return rows.filter((row) => {
-      const { instance, nodeinfoDescription, languages = [], softwareKey, stats } = row;
+      const {
+        instance,
+        nodeinfoDescription,
+        languages = [],
+        softwareKey,
+        stats,
+      } = row;
+      const parent = findParentSoftware(softwareKey);
+      const effectiveKey = parent || softwareKey;
 
       const matchesSoftware =
-        filters.software === "all" || softwareKey === filters.software;
+        filters.software === "all" ||
+        effectiveKey === filters.software ||
+        softwareKey === filters.software;
 
       if (!matchesSoftware) {
         return false;
@@ -379,14 +622,17 @@
         filters.query.length > 0 ||
         filters.software !== "all" ||
         filters.language !== "all";
-      setStatusMessage(hasActiveFilters ? strings.no_results : strings.no_instances);
+      setStatusMessage(
+        hasActiveFilters ? strings.no_results : strings.no_instances
+      );
       return;
     }
 
     const fragment = document.createDocumentFragment();
 
     rows.forEach((entry) => {
-      const { instance, stats, host, nodeinfoDescription, softwareLabel } = entry;
+      const { instance, stats, host, nodeinfoDescription, softwareLabel } =
+        entry;
       const tableRow = document.createElement("tr");
       if (host) {
         tableRow.dataset.host = host;
@@ -435,7 +681,9 @@
       }
 
       const platformCell = document.createElement("td");
-      platformCell.textContent = textOrFallback(softwareLabel ?? instance.platform);
+      platformCell.textContent = textOrFallback(
+        softwareLabel ?? instance.platform
+      );
 
       const languagesCell = document.createElement("td");
       languagesCell.textContent = formatLanguages(entry, strings);
@@ -469,7 +717,9 @@
   async function loadInstances() {
     const response = await fetch(resolveAssetUrl("data/instances.json"));
     if (!response.ok) {
-      throw new Error(`인스턴스 데이터를 불러올 수 없습니다: ${response.status}`);
+      throw new Error(
+        `인스턴스 데이터를 불러올 수 없습니다: ${response.status}`
+      );
     }
     const data = await response.json();
     if (!Array.isArray(data)) {
@@ -492,7 +742,9 @@
       }
       return data;
     } catch (error) {
-      console.info("통계 데이터를 불러오지 못했습니다. 기본 값으로 표시합니다.");
+      console.info(
+        "통계 데이터를 불러오지 못했습니다. 기본 값으로 표시합니다."
+      );
       return [];
     }
   }
@@ -643,10 +895,7 @@
 
   function normalizeLanguageCode(value) {
     if (value === null || value === undefined) return "";
-    const text = String(value)
-      .replace(/[;|]/g, ",")
-      .replace(/_/g, "-")
-      .trim();
+    const text = String(value).replace(/[;|]/g, ",").replace(/_/g, "-").trim();
     if (!text) return "";
     const cleaned = text
       .replace(/[^a-z0-9-]/gi, "-")
@@ -662,9 +911,7 @@
     if (value === null || value === undefined) {
       return [];
     }
-    const text = String(value)
-      .replace(/[;|]/g, ",")
-      .trim();
+    const text = String(value).replace(/[;|]/g, ",").trim();
     if (!text) {
       return [];
     }
@@ -723,7 +970,6 @@
       }
     }
   }
-
 
   function stringOrNull(value) {
     if (value === null || value === undefined) {
@@ -792,7 +1038,9 @@
   function formatLanguageDisplay(code) {
     return code
       .split("-")
-      .map((part, index) => (index === 0 ? part.toLowerCase() : part.toUpperCase()))
+      .map((part, index) =>
+        index === 0 ? part.toLowerCase() : part.toUpperCase()
+      )
       .join("-");
   }
 
@@ -818,7 +1066,9 @@
       }
       return data;
     } catch (error) {
-      console.info("문자열 데이터를 불러오지 못했습니다. 내장 한국어 문자열을 사용합니다.");
+      console.info(
+        "문자열 데이터를 불러오지 못했습니다. 내장 한국어 문자열을 사용합니다."
+      );
       return FALLBACK_STRINGS;
     }
   }
@@ -854,7 +1104,10 @@
     if (elements.table) {
       elements.table.setAttribute("aria-label", dict.table_aria);
       if (elements.tableCaption?.id) {
-        elements.table.setAttribute("aria-describedby", elements.tableCaption.id);
+        elements.table.setAttribute(
+          "aria-describedby",
+          elements.tableCaption.id
+        );
       }
     }
     if (elements.footerNote) {
@@ -871,7 +1124,10 @@
       elements.languageLabel.textContent = dict.language_filter_label;
     }
     if (elements.languageSelect) {
-      elements.languageSelect.setAttribute("aria-label", dict.language_filter_label);
+      elements.languageSelect.setAttribute(
+        "aria-label",
+        dict.language_filter_label
+      );
       elements.languageSelect.innerHTML = "";
       const opt = document.createElement("option");
       opt.value = "all";
@@ -893,7 +1149,11 @@
     setColumnText("platform", dict.platform);
     setColumnText("languages", dict.languages);
     setColumnText("users_total", dict.users_total, dict.sort_users_total);
-    setColumnText("users_active_month", dict.users_active, dict.sort_users_active);
+    setColumnText(
+      "users_active_month",
+      dict.users_active,
+      dict.sort_users_active
+    );
     setColumnText("statuses", dict.statuses);
   }
 
@@ -943,7 +1203,8 @@
   function updateLanguageOptions(rows, dict) {
     if (!elements.languageSelect) return;
 
-    const currentValue = elements.languageSelect.value || filters.language || "all";
+    const currentValue =
+      elements.languageSelect.value || filters.language || "all";
     const seen = new Map();
 
     rows.forEach(({ languages = [] }) => {
@@ -978,74 +1239,208 @@
     filters.language = nextValue;
   }
 
-  function updateSoftwareSidebar(rows, dict) {
-    if (!elements.softwareList) return;
-
+  function buildSoftwareTree(rows) {
     const counts = new Map();
 
+    // 개별 키 카운트
     rows.forEach((row) => {
       const key = row.softwareKey || "unknown";
-      const label = resolveSoftwareLabel(row.softwareRaw, row.instance?.platform, dict);
-      row.softwareLabel = label;
-      if (!counts.has(key)) {
-        counts.set(key, { label, count: 0 });
-      }
-      counts.get(key).label = label;
-      counts.get(key).count += 1;
+      counts.set(key, (counts.get(key) || 0) + 1);
     });
 
-    const sorted = Array.from(counts.entries()).sort((a, b) =>
-      a[1].label.localeCompare(b[1].label, locale, { sensitivity: "base" })
-    );
+    const tree = {};
+    const usedKeys = new Set();
 
+    // 1) 미리 정의한 상위 카테고리들부터 채우기
+    SOFTWARE_ORDER.forEach((parent) => {
+      const children = SOFTWARE_LINEAGE[parent] || [];
+      const childList = [];
+      let total = 0;
+
+      children.forEach((childKey) => {
+        const c = counts.get(childKey) || 0;
+        if (c > 0) {
+          childList.push([childKey, c]);
+          total += c;
+          usedKeys.add(childKey);
+        }
+      });
+
+      const parentSelf = counts.get(parent) || 0;
+      if (parentSelf > 0) {
+        usedKeys.add(parent);
+      }
+      total += parentSelf;
+
+      if (total === 0) return;
+
+      tree[parent] = {
+        total,
+        parentSelf,
+        children: childList,
+      };
+    });
+
+    // 2) 어떤 카테고리에도 안 들어간 소프트웨어를 개별 상위 카테고리로 추가
+    counts.forEach((count, key) => {
+      if (!key) return;
+      if (usedKeys.has(key)) return;
+
+      tree[key] = {
+        total: count,
+        parentSelf: count,
+        children: [], // 하위 없음
+      };
+    });
+
+    return tree;
+  }
+
+  function updateSoftwareSidebar(rows, dict) {
+    if (!elements.softwareList) return;
     const list = elements.softwareList;
     list.innerHTML = "";
 
+    // 1) ALL
     const totalCount = rows.length;
     const allItem = document.createElement("li");
-    const allButton = document.createElement("button");
-    allButton.type = "button";
-    allButton.className = "sidebar__button";
-    allButton.dataset.software = "all";
-
-    const allLabel = document.createElement("span");
-    allLabel.textContent = dict.software_all;
-    const allBadge = document.createElement("span");
-    allBadge.className = "sidebar__badge";
-    allBadge.textContent = totalCount.toLocaleString(locale);
-    allButton.append(allLabel, allBadge);
-    allItem.appendChild(allButton);
+    const allBtn = document.createElement("button");
+    allBtn.className = "sidebar__button";
+    allBtn.dataset.software = "all";
+    allBtn.textContent = `${dict.software_all} (${totalCount})`;
+    allItem.appendChild(allBtn);
     list.appendChild(allItem);
 
-    sorted.forEach(([value, info]) => {
+    // 2) SOFTWARE_LINEAGE 기반 트리 구성
+    const tree = buildSoftwareTree(rows);
+
+    // 헬퍼: 부모 카테고리 하나 렌더링하는 함수
+    function renderParent(parentKey) {
+      const node = tree[parentKey];
+      if (!node) return;
+
       const item = document.createElement("li");
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "sidebar__button";
-      button.dataset.software = value || "unknown";
+      item.className = "sidebar__item";
 
-      const labelSpan = document.createElement("span");
-      labelSpan.textContent = info.label;
-      const countBadge = document.createElement("span");
-      countBadge.className = "sidebar__badge";
-      countBadge.textContent = info.count.toLocaleString(locale);
+      const parentBtn = document.createElement("button");
+      parentBtn.className = "sidebar__button";
+      parentBtn.dataset.software = parentKey;
 
-      button.append(labelSpan, countBadge);
-      item.appendChild(button);
+      const labelText =
+        parentKey === "unknown"
+          ? dict.software_unknown
+          : dict[`software_label_${parentKey}`] || parentKey;
+
+      const hasChildren = node.children && node.children.length > 0;
+
+      if (hasChildren) {
+        const toggle = document.createElement("span");
+        toggle.className = "sidebar__toggle";
+
+        const isOpen = openParent === parentKey;
+        toggle.textContent = isOpen ? "▾" : "▸";
+        parentBtn.appendChild(toggle);
+      }
+
+      parentBtn.appendChild(
+        document.createTextNode(` ${labelText} (${node.total})`)
+      );
+
+      item.appendChild(parentBtn);
+
+      if (hasChildren) {
+        const sub = document.createElement("ul");
+        sub.className = "sidebar__sublist";
+        sub.hidden = openParent !== parentKey;
+
+        node.children.forEach(([childKey, count]) => {
+          const childItem = document.createElement("li");
+          const childBtn = document.createElement("button");
+          childBtn.className = "sidebar__button";
+          childBtn.dataset.software = childKey;
+
+          const childLabel = dict[`software_label_${childKey}`] || childKey;
+
+          childBtn.textContent = `${childLabel} (${count})`;
+          childItem.appendChild(childBtn);
+          sub.appendChild(childItem);
+        });
+
+        item.appendChild(sub);
+      }
+
       list.appendChild(item);
+    }
+
+    // 3) 미리 정한 순서대로 상위 카테고리 렌더
+    SOFTWARE_ORDER.forEach((parentKey) => {
+      if (tree[parentKey]) {
+        renderParent(parentKey);
+      }
     });
 
-    const validValues = new Set(["all", ...sorted.map(([value]) => value || "unknown")]);
-    if (!validValues.has(filters.software)) {
-      filters.software = "all";
+    // 4) 카테고리에 안 들어간 소프트웨어들을 맨 아래에 알파벳 순으로 추가
+    const extraKeys = Object.keys(tree).filter(
+      (key) => !SOFTWARE_ORDER.includes(key)
+    );
+
+    if (extraKeys.length > 0) {
+      // 알파벳(또는 locale) 기준 정렬
+      extraKeys.sort((a, b) => {
+        const labelA =
+          a === "unknown"
+            ? dict.software_unknown
+            : dict[`software_label_${a}`] || a;
+        const labelB =
+          b === "unknown"
+            ? dict.software_unknown
+            : dict[`software_label_${b}`] || b;
+        return labelA.localeCompare(labelB, locale, { sensitivity: "base" });
+      });
+
+      extraKeys.forEach((key) => {
+        renderParent(key);
+      });
     }
 
     updateSoftwareActiveState();
+    applyCollapseState();
+  }
+
+  function applyCollapseState() {
+    if (!elements.softwareList) return;
+
+    const items = elements.softwareList.querySelectorAll(".sidebar__item");
+    items.forEach((item) => {
+      const btn = item.querySelector("button[data-software]");
+      if (!btn) return;
+
+      const key = btn.dataset.software;
+      const toggle = btn.querySelector(".sidebar__toggle");
+      const sublist = item.querySelector(".sidebar__sublist");
+
+      // 하위가 없는 경우 무시
+      if (!sublist) return;
+
+      if (key === openParent) {
+        // 펼치기
+        sublist.hidden = false;
+        item.classList.remove("sidebar__item--collapsed");
+        if (toggle) toggle.textContent = "▾";
+      } else {
+        // 접기
+        sublist.hidden = true;
+        item.classList.add("sidebar__item--collapsed");
+        if (toggle) toggle.textContent = "▸";
+      }
+    });
   }
 
   function updateSoftwareActiveState() {
     if (!elements.softwareList) return;
-    const buttons = elements.softwareList.querySelectorAll("button[data-software]");
+    const buttons = elements.softwareList.querySelectorAll(
+      "button[data-software]"
+    );
     buttons.forEach((button) => {
       const value = button.dataset.software || "all";
       if (value === filters.software) {
@@ -1152,7 +1547,10 @@
           const details = await fetchInstanceDetails(host);
           results.push({ host, details });
         } catch (error) {
-          console.info(`호스트 ${host}의 세부 정보를 불러오지 못했습니다.`, error);
+          console.info(
+            `호스트 ${host}의 세부 정보를 불러오지 못했습니다.`,
+            error
+          );
         }
       }
     }
@@ -1182,16 +1580,25 @@
         const detectedFromDescription = detectLanguagesFromText(
           description || row.nodeinfoDescription || row.instance?.description
         );
-        const combinedLanguages = mergeLanguageLists(languages, detectedFromDescription);
+        const combinedLanguages = mergeLanguageLists(
+          languages,
+          detectedFromDescription
+        );
 
         if (combinedLanguages.length) {
-          const mergedLanguages = mergeLanguageLists(row.languages, combinedLanguages);
+          const mergedLanguages = mergeLanguageLists(
+            row.languages,
+            combinedLanguages
+          );
           if (mergedLanguages.length !== row.languages.length) {
             row.languages = mergedLanguages;
             updated = true;
           }
 
-          const mergedNodeinfo = mergeLanguageLists(row.nodeinfoLanguages, combinedLanguages);
+          const mergedNodeinfo = mergeLanguageLists(
+            row.nodeinfoLanguages,
+            combinedLanguages
+          );
           if (mergedNodeinfo.length !== row.nodeinfoLanguages.length) {
             row.nodeinfoLanguages = mergedNodeinfo;
           }
@@ -1270,7 +1677,10 @@
         if (!description && siteMetadata.description) {
           description = siteMetadata.description;
         }
-        if (Array.isArray(siteMetadata.languages) && siteMetadata.languages.length) {
+        if (
+          Array.isArray(siteMetadata.languages) &&
+          siteMetadata.languages.length
+        ) {
           languages = mergeLanguageLists(languages, siteMetadata.languages);
         }
       }
@@ -1360,9 +1770,15 @@
 
         let languages = [];
         if (includeLanguages) {
-          languages = mergeLanguageLists(languages, collectLanguagesFromDocument(doc));
+          languages = mergeLanguageLists(
+            languages,
+            collectLanguagesFromDocument(doc)
+          );
           if (!languages.length && description) {
-            languages = mergeLanguageLists(languages, detectLanguagesFromText(description));
+            languages = mergeLanguageLists(
+              languages,
+              detectLanguagesFromText(description)
+            );
           }
         }
 
@@ -1430,9 +1846,7 @@
     if (value === null || value === undefined) {
       return [];
     }
-    const text = String(value)
-      .replace(/[;|]/g, ",")
-      .trim();
+    const text = String(value).replace(/[;|]/g, ",").trim();
     if (!text) {
       return [];
     }
@@ -1450,6 +1864,30 @@
     return text.replace(/_/g, "-").toLowerCase();
   }
 
+  function loadPinnedSoftware() {
+    try {
+      const raw = window.localStorage.getItem("fedlist_pinned_software");
+      if (!raw) return new Set();
+      const arr = JSON.parse(raw);
+      if (!Array.isArray(arr)) return new Set();
+      return new Set(arr);
+    } catch {
+      return new Set();
+    }
+  }
+
+  function savePinnedSoftware() {
+    try {
+      const arr = Array.from(pinnedSoftware);
+      window.localStorage.setItem(
+        "fedlist_pinned_software",
+        JSON.stringify(arr)
+      );
+    } catch {
+      // localStorage 막혀 있어도 무시
+    }
+  }
+
   function prioritizeNodeInfoLinks(links) {
     const priorities = [
       "https://nodeinfo.diaspora.software/ns/schema/2.1",
@@ -1463,7 +1901,10 @@
     ];
 
     const recognized = links
-      .filter((link) => link && typeof link.rel === "string" && typeof link.href === "string")
+      .filter(
+        (link) =>
+          link && typeof link.rel === "string" && typeof link.href === "string"
+      )
       .map((link) => ({ ...link, priority: priorities.indexOf(link.rel) }))
       .filter((entry) => entry.priority >= 0)
       .sort((a, b) => a.priority - b.priority)
@@ -1510,7 +1951,8 @@
       return [];
     }
 
-    const metadata = typeof nodeInfo.metadata === "object" ? nodeInfo.metadata : null;
+    const metadata =
+      typeof nodeInfo.metadata === "object" ? nodeInfo.metadata : null;
     const usage = typeof nodeInfo.usage === "object" ? nodeInfo.usage : null;
 
     const collections = [
