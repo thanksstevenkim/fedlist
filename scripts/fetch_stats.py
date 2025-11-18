@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 from urllib.parse import urlparse, urljoin
 import codecs
+from langdetect import detect_langs, LangDetectException
 
 TIMEOUT = 5
 USER_AGENT = "fedlist-stats-fetcher/1.0"
@@ -590,7 +591,7 @@ def process_instance(instance: Instance, timestamp: str) -> Tuple[Dict[str, Any]
 
     canonical_base: Optional[str] = None
     try:
-        nodeinfo, canonical_base = fetch_nodeinfo(instance.host)  # ← 튜플로 받음
+        nodeinfo, canonical_base = fetch_nodeinfo(instance.host)
     except FetchError as exc:
         errors.append(f"nodeinfo: {exc}")
         nodeinfo = None
@@ -606,7 +607,11 @@ def process_instance(instance: Instance, timestamp: str) -> Tuple[Dict[str, Any]
         update_numeric(record, "users_active_month", coerce_int(users, "activeMonth"))
         update_numeric(record, "statuses", coerce_int(usage, "localPosts"))
 
-        append_languages(languages, languages_seen, usage.get("languages") if isinstance(usage, dict) else None)
+        # ✅ NodeInfo 안에 있는 언어 필드를 싹 긁어서 붙이기
+        ni_langs = extract_languages_from_nodeinfo(nodeinfo)
+        append_languages(languages, languages_seen, ni_langs)
+
+        # peers
         peers.update(extract_peer_hosts_from_nodeinfo(nodeinfo))
     elif nodeinfo:
         errors.append("nodeinfo: invalid format")
@@ -662,7 +667,15 @@ def process_instance(instance: Instance, timestamp: str) -> Tuple[Dict[str, Any]
         update_numeric(record, "statuses", platform_data.get("statuses"))
         append_languages(languages, languages_seen, platform_data.get("languages"))
         peers.update(normalize_peer_list(platform_data.get("peers")))
+    
+        # --- 설명 텍스트 기반 언어 보정 ---
+    desc = record.get("nodeinfo_description")
+    if not desc and nodeinfo:
+        desc = extract_description_from_nodeinfo(nodeinfo)
+        if desc:
+            record["nodeinfo_description"] = desc
 
+    # 최종 언어 리스트 저장
     record["languages_detected"] = languages
     return record, errors, peers
 
@@ -952,6 +965,127 @@ def update_numeric(record: Dict[str, Any], key: str, value: Any) -> None:
     if record.get(key) is None:
         record[key] = number
 
+def extract_description_from_nodeinfo(nodeinfo: Dict[str, Any]) -> Optional[str]:
+    """
+    NodeInfo + metadata에서 서버 설명으로 쓸만한 문자열 하나 뽑기.
+    render.js 쪽 로직이랑 비슷하게 우선순위로 고른다.
+    """
+    if not isinstance(nodeinfo, dict):
+        return None
+
+    metadata = nodeinfo.get("metadata")
+    if not isinstance(metadata, dict):
+        metadata = {}
+
+    candidates = [
+        metadata.get("nodeDescription"),
+        metadata.get("description"),
+        metadata.get("shortDescription"),
+        metadata.get("summary"),
+        metadata.get("defaultDescription"),
+    ]
+
+    node = metadata.get("node")
+    if isinstance(node, dict):
+        candidates.append(node.get("description"))
+
+    for cand in candidates:
+        if cand is None:
+            continue
+        text = str(cand).strip()
+        if text:
+            return text
+    return None
+
+
+def extract_languages_from_nodeinfo(nodeinfo: Dict[str, Any]) -> List[str]:
+    """
+    NodeInfo 안의 여러 언어 필드에서 언어 코드들을 수집해서 리턴.
+    usage.languages 외에 metadata.languages 등도 같이 본다.
+    """
+    if not isinstance(nodeinfo, dict):
+        return []
+
+    metadata = nodeinfo.get("metadata")
+    if not isinstance(metadata, dict):
+        metadata = {}
+
+    usage = nodeinfo.get("usage")
+    if not isinstance(usage, dict):
+        usage = {}
+
+    collections = [
+        metadata.get("languages"),
+        metadata.get("language"),
+        metadata.get("languages_detected"),
+        metadata.get("languagesDetected"),
+        isinstance(metadata.get("node"), dict) and metadata["node"].get("languages"),
+        usage.get("languages"),
+        nodeinfo.get("language"),
+    ]
+
+    langs: List[str] = []
+    seen = set()
+
+    for values in collections:
+        if not values:
+            continue
+        # append_languages는 dict/list/str 다 받아주니까 그대로 넘겨도 됨
+        append_languages(langs, seen, values)
+
+    return langs
+
+def detect_scripts(text: str) -> set[str]:
+    langs = set()
+
+    # 한글 (가~힣)
+    if any("\uac00" <= ch <= "\ud7a3" for ch in text):
+        langs.add("ko")
+
+    # 일본어: 히라가나, 가타카나, 한자 (중국어와 공유하지만, 섞여 있으면 ja로 치는 정도)
+    if any(
+        ("\u3040" <= ch <= "\u309f") or  # 히라가나
+        ("\u30a0" <= ch <= "\u30ff") or  # 가타카나
+        ("\u4e00" <= ch <= "\u9fff")     # CJK 통합 한자
+        for ch in text
+    ):
+        langs.add("ja")
+
+    # 라틴 알파벳
+    if any(("A" <= ch <= "Z") or ("a" <= ch <= "z") for ch in text):
+        langs.add("en")
+
+    return langs
+
+def detect_languages_from_text(text: str,
+                               max_langs: int = 5,
+                               min_prob: float = 0.2) -> List[str]:
+    """
+    서버 설명 같은 짧은 텍스트에서 언어 코드를 추론한다.
+    langdetect 결과에서 확률이 min_prob 이상인 코드만,
+    최대 max_langs개까지 반환.
+    """
+    text = (text or "").strip()
+    if not text:
+        return []
+
+    try:
+        candidates = detect_langs(text)
+    except LangDetectException:
+        return []
+
+    langs: List[str] = []
+    for cand in candidates:
+        # cand.lang 은 'ko', 'en', 'pt' 같은 코드
+        if cand.prob < min_prob:
+            continue
+        code = normalize_language_code(cand.lang)
+        if code and code not in langs:
+            langs.append(code)
+        if len(langs) >= max_langs:
+            break
+
+    return langs
 
 def append_languages(target: List[str], seen: set, values: Any) -> None:
     if isinstance(values, dict):

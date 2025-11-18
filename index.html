@@ -22,28 +22,26 @@
       <section aria-labelledby="directory-title" class="directory">
         <h2 id="directory-title" class="sr-only"></h2>
         <form id="filterForm" class="filter-bar" role="search">
-          <div class="filter-field">
-            <label for="q" id="searchLabel"></label>
-            <input type="search" id="q" name="q" autocomplete="off" />
-          </div>
-          <div class="filter-field filter-field--narrow">
-            <label for="languageFilter" id="languageLabel"></label>
-            <select id="languageFilter" name="language"></select>
-          </div>
-          <div class="filter-field filter-field--checkbox">
-            <label>
-              <input type="checkbox" id="showClosedFilter" name="showClosed" />
-              <span id="showClosedLabel"></span>
-            </label>
-          </div>
-        </form>
+          <div class="filter-field filter-field--search">
+          <label for="q" id="searchLabel"></label>
+          <input type="search" id="q" name="q" autocomplete="off" />
+        </div>
+      <div class="filter-field filter-field--narrow">
+        <label for="languageFilter" id="languageLabel"></label>
+        <select id="languageFilter" name="language"></select>
+      </div>
+      <div class="filter-field filter-field--toggle">
+        <button type="button" id="showClosedToggle" class="toggle-button">
+          <span id="showClosedLabel"></span>
+        </button>
+      </div>
+    </form>
         <div class="table-container">
           <table id="instances-table">
             <caption id="tableCaption"></caption>
             <thead>
               <tr>
                 <th scope="col" data-column="name"></th>
-                <th scope="col" data-column="url"></th>
                 <th scope="col" data-column="platform"></th>
                 <th scope="col" data-column="languages"></th>
                 <th scope="col" data-column="users_total" data-sort-key="users_total">
@@ -57,7 +55,7 @@
             </thead>
             <tbody id="instances-body">
               <tr>
-                <td colspan="7"></td>
+                <td colspan="6"></td>
               </tr>
             </tbody>
           </table>

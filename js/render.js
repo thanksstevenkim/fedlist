@@ -89,7 +89,7 @@
     searchLabel: document.getElementById("searchLabel"),
     languageSelect: document.getElementById("languageFilter"),
     languageLabel: document.getElementById("languageLabel"),
-    showClosedFilter: document.getElementById("showClosedFilter"),
+    showClosedToggle: document.getElementById("showClosedToggle"),
     showClosedLabel: document.getElementById("showClosedLabel"),
     softwareList: document.getElementById("softwareFilter"),
     softwareHeading: document.getElementById("softwareFilterTitle"),
@@ -342,11 +342,7 @@
       const statsLanguages = Array.isArray(statsEntry?.languages_detected)
         ? statsEntry.languages_detected
         : [];
-      const languages = mergeLanguageLists(
-        manualLanguages,
-        statsLanguages,
-        detectLanguagesFromText(manualEntry?.description)
-      );
+      const languages = mergeLanguageLists(manualLanguages, statsLanguages);
 
       const rawSoftwareName =
         stringOrNull(statsEntry?.software?.name) ??
@@ -367,12 +363,17 @@
         languages: manualLanguages,
       };
 
+      // ✅ stats.ok.json에서 nodeinfo_description을 직접 사용
+      const nodeinfoDescription = stringOrNull(
+        statsEntry?.nodeinfo_description
+      );
+
       acc.push({
         order: acc.length,
         instance,
         host,
         stats: statsEntry,
-        nodeinfoDescription: null,
+        nodeinfoDescription: nodeinfoDescription, // ✅ 여기에 할당
         nodeinfoLanguages: [],
         languages,
         softwareKey,
@@ -434,9 +435,24 @@
       });
     }
 
-    if (elements.showClosedFilter) {
-      elements.showClosedFilter.addEventListener("change", () => {
-        filters.showClosed = elements.showClosedFilter.checked;
+    if (elements.showClosedToggle) {
+      const updateToggleUI = () => {
+        elements.showClosedToggle.classList.toggle(
+          "toggle-button--active",
+          filters.showClosed
+        );
+        elements.showClosedToggle.setAttribute(
+          "aria-pressed",
+          filters.showClosed ? "true" : "false"
+        );
+      };
+
+      // 초기 상태 UI 반영
+      updateToggleUI();
+
+      elements.showClosedToggle.addEventListener("click", () => {
+        filters.showClosed = !filters.showClosed;
+        updateToggleUI();
         updateDisplay();
       });
     }
@@ -662,14 +678,22 @@
 
       const nameHeading = document.createElement("div");
       nameHeading.className = "cell-name__title";
-      nameHeading.textContent = textOrFallback(instance.name);
 
-      const verificationBadge = createVerificationBadge(stats, strings);
-      if (verificationBadge) {
-        nameHeading.appendChild(verificationBadge);
+      // 링크 생성
+      const nameLink = document.createElement("a");
+      const linkHref = instance.url || (host ? `https://${host}` : null);
+      const nameText = textOrFallback(instance.name || host);
+
+      if (linkHref) {
+        nameLink.href = linkHref;
+        nameLink.target = "_blank";
+        nameLink.rel = "noopener";
       }
+      nameLink.textContent = nameText;
 
-      // 가입 열림 배지 추가
+      nameHeading.appendChild(nameLink);
+
+      // 가입 여부 배지
       const openBadge = createOpenRegistrationBadge(stats, strings);
       if (openBadge) {
         nameHeading.appendChild(openBadge);
@@ -684,18 +708,6 @@
         description.className = "cell-name__description";
         description.textContent = descriptionText;
         nameCell.appendChild(description);
-      }
-
-      const urlCell = document.createElement("td");
-      if (instance.url) {
-        const link = document.createElement("a");
-        link.href = instance.url;
-        link.textContent = instance.url.replace(/^https?:\/\//, "");
-        link.rel = "noopener";
-        link.target = "_blank";
-        urlCell.appendChild(link);
-      } else {
-        urlCell.textContent = strings.no_data;
       }
 
       const platformCell = document.createElement("td");
@@ -717,7 +729,6 @@
 
       tableRow.append(
         nameCell,
-        urlCell,
         platformCell,
         languagesCell,
         usersTotalCell,
@@ -787,6 +798,8 @@
         software: normalizeSoftware(entry.software),
         languages_detected: normalizeLanguageList(entry.languages_detected),
         fetched_at: entry.fetched_at ?? null,
+        // ✅ nodeinfo_description 필드 추가!
+        nodeinfo_description: stringOrNull(entry.nodeinfo_description),
       });
     });
     return map;
@@ -997,50 +1010,17 @@
     return text.length ? text : null;
   }
 
-  function createVerificationBadge(stats, dict) {
-    if (!stats || typeof stats !== "object") return null;
-    if (stats.verified_activitypub === true) {
-      const badge = document.createElement("span");
-      badge.className = "badge badge--ok";
-      badge.textContent = dict.badge_verified_ok;
-      badge.title = dict.badge_verified_ok;
-      return badge;
-    }
-    if (stats.verified_activitypub === false) {
-      const badge = document.createElement("span");
-      badge.className = "badge badge--warn";
-      badge.textContent = dict.badge_verified_fail;
-      badge.title = dict.badge_verified_fail;
-      return badge;
-    }
-    return null;
-  }
-
   function createOpenRegistrationBadge(stats, dict) {
     if (!stats || typeof stats !== "object") return null;
     if (stats.open_registrations === true) {
       const badge = document.createElement("span");
-      badge.className = "badge badge--open";
+      // 검증됨 배지와 같은 초록색 스타일 사용
+      badge.className = "badge badge--ok";
       badge.textContent = dict.badge_open;
       badge.title = dict.badge_open;
       return badge;
     }
     return null;
-  }
-
-  function formatRegistration(stats, dict) {
-    if (!stats || typeof stats !== "object") {
-      return dict.no_data;
-    }
-
-    const joinState = stats.open_registrations;
-    if (joinState === true) {
-      return dict.registration_open;
-    }
-    if (joinState === false) {
-      return dict.registration_closed;
-    }
-    return dict.registration_unknown;
   }
 
   function formatLanguages(row, dict) {
@@ -1049,17 +1029,28 @@
       return dict.no_data;
     }
 
-    const display = languages.map((code) => formatLanguageDisplay(code));
+    const display = languages.map((code) => formatLanguageDisplay(code, dict));
     return display.length ? display.join(", ") : dict.no_data;
   }
 
-  function formatLanguageDisplay(code) {
-    return code
+  function formatLanguageDisplay(code, dict) {
+    if (!code) return "";
+
+    // 기존 코드 표기(normalized code) 유지
+    const normalized = code
       .split("-")
       .map((part, index) =>
         index === 0 ? part.toLowerCase() : part.toUpperCase()
       )
       .join("-");
+
+    // 첫 부분만 따서 en, ja, ko 등으로 사용
+    const base = normalized.split("-")[0];
+    const key = `language_name_${base}`;
+    const label = dict && dict[key];
+
+    // strings.json에 언어 이름이 있으면 그걸 쓰고, 없으면 코드 그대로 사용
+    return label || normalized;
   }
 
   function textOrFallback(value) {
@@ -1163,7 +1154,6 @@
     filters.software = "all";
 
     setColumnText("name", dict.name);
-    setColumnText("url", dict.url);
     setColumnText("platform", dict.platform);
     setColumnText("languages", dict.languages);
     setColumnText("users_total", dict.users_total, dict.sort_users_total);
@@ -1229,7 +1219,7 @@
       languages.forEach((value) => {
         const code = normalizeLanguageCode(value);
         if (!code || seen.has(code)) return;
-        seen.set(code, formatLanguageDisplay(code));
+        seen.set(code, formatLanguageDisplay(code, dict));
       });
     });
 
@@ -1581,52 +1571,24 @@
         return;
       }
       const description = stringOrNull(details.description);
-      const languages = Array.isArray(details.languages)
-        ? mergeLanguageLists(details.languages)
-        : [];
 
       rows.forEach((row) => {
         if (row.host !== host) {
           return;
         }
 
-        if (description && row.nodeinfoDescription !== description) {
+        // ✅ 이미 설명이 있으면 덮어쓰지 않음 (중요!)
+        if (!row.nodeinfoDescription && description) {
           row.nodeinfoDescription = description;
           updated = true;
-        }
-
-        const detectedFromDescription = detectLanguagesFromText(
-          description || row.nodeinfoDescription || row.instance?.description
-        );
-        const combinedLanguages = mergeLanguageLists(
-          languages,
-          detectedFromDescription
-        );
-
-        if (combinedLanguages.length) {
-          const mergedLanguages = mergeLanguageLists(
-            row.languages,
-            combinedLanguages
-          );
-          if (mergedLanguages.length !== row.languages.length) {
-            row.languages = mergedLanguages;
-            updated = true;
-          }
-
-          const mergedNodeinfo = mergeLanguageLists(
-            row.nodeinfoLanguages,
-            combinedLanguages
-          );
-          if (mergedNodeinfo.length !== row.nodeinfoLanguages.length) {
-            row.nodeinfoLanguages = mergedNodeinfo;
-          }
         }
       });
     });
 
     if (updated) {
-      updateLanguageOptions(rows, strings);
-      updateDisplay();
+      // 🔴 언어 옵션 업데이트는 필요 없음 (설명만 업데이트했으므로)
+      // updateLanguageOptions(rows, strings);
+      updateDisplay(); // ✅ 설명 업데이트는 화면에 반영
     }
   }
 
@@ -1681,41 +1643,30 @@
   async function fetchInstanceDetails(host) {
     const nodeInfo = await fetchNodeInfoDetails(host);
     let description = stringOrNull(nodeInfo?.description) ?? null;
-    let languages = Array.isArray(nodeInfo?.languages)
-      ? mergeLanguageLists(nodeInfo.languages)
-      : [];
 
-    if (!description || !languages.length) {
+    if (!description) {
       const siteMetadata = await fetchSiteMetadata(host, {
-        includeDescription: !description,
-        includeLanguages: !languages.length,
+        includeDescription: true,
+        includeLanguages: false,
       });
 
-      if (siteMetadata) {
-        if (!description && siteMetadata.description) {
-          description = siteMetadata.description;
-        }
-        if (
-          Array.isArray(siteMetadata.languages) &&
-          siteMetadata.languages.length
-        ) {
-          languages = mergeLanguageLists(languages, siteMetadata.languages);
-        }
+      if (siteMetadata && siteMetadata.description) {
+        description = siteMetadata.description;
       }
     }
 
-    if (!description && !languages.length) {
+    if (!description) {
       return null;
     }
 
     return {
       description: description ?? null,
-      languages,
+      languages: [],
     };
   }
 
   async function fetchSiteMetadata(host, options = {}) {
-    const { includeDescription = true, includeLanguages = true } = options;
+    const { includeDescription = true, includeLanguages = false } = options;
     if (!includeDescription && !includeLanguages) {
       return null;
     }
@@ -1787,18 +1738,6 @@
         }
 
         let languages = [];
-        if (includeLanguages) {
-          languages = mergeLanguageLists(
-            languages,
-            collectLanguagesFromDocument(doc)
-          );
-          if (!languages.length && description) {
-            languages = mergeLanguageLists(
-              languages,
-              detectLanguagesFromText(description)
-            );
-          }
-        }
 
         if (!description && !languages.length) {
           continue;
