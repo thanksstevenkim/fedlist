@@ -21,6 +21,8 @@
     "software_label_relay": "릴레이",
     "software_label_hollo": "Hollo",
     "software_label_video": "동영상",
+    "software_label_forum": "포럼",
+    "software_label_bot": "봇",
     "software_label_iceshrimp": "IceShrimp",
     "software_label_iceshrimp-net": "IceShrimp.NET",
     "software_label_gnusocial": "GNUSocial",
