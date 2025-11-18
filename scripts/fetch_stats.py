@@ -14,6 +14,7 @@ import argparse
 import json
 import logging
 import sys
+import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,6 +22,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 from urllib.parse import urlparse, urljoin
 import codecs
 from langdetect import detect_langs, LangDetectException
+from html.parser import HTMLParser
 
 TIMEOUT = 5
 USER_AGENT = "fedlist-stats-fetcher/1.0"
@@ -668,16 +670,146 @@ def process_instance(instance: Instance, timestamp: str) -> Tuple[Dict[str, Any]
         append_languages(languages, languages_seen, platform_data.get("languages"))
         peers.update(normalize_peer_list(platform_data.get("peers")))
     
-        # --- 설명 텍스트 기반 언어 보정 ---
+        # --- 설명 텍스트 저장 (언어 감지 없이) ---
     desc = record.get("nodeinfo_description")
     if not desc and nodeinfo:
         desc = extract_description_from_nodeinfo(nodeinfo)
         if desc:
             record["nodeinfo_description"] = desc
+    
+    # ✅ NodeInfo에서 설명을 가져오지 못했을 때 사이트 메타데이터에서 시도
+    if not desc:
+        site_details = fetch_instance_details(base_url, record["host"])
+        if site_details and site_details.get("description"):
+            desc = site_details["description"]
+            record["nodeinfo_description"] = desc
+            
+            # 사이트 메타데이터에서 발견된 언어도 추가
+            site_langs = site_details.get("languages", [])
+            append_languages(languages, languages_seen, site_langs)
+    
+    if desc:
+        # 1) 스크립트(문자 범위) 기반으로 ko/ja/en 강제 포함
+        script_langs = list(detect_scripts(desc))
+        append_languages(languages, languages_seen, script_langs)
+        
+        # 2) langdetect 결과도 참고 (있으면 추가)
+        guessed_langs = detect_languages_from_text(desc)
+        append_languages(languages, languages_seen, guessed_langs)
 
     # 최종 언어 리스트 저장
     record["languages_detected"] = languages
     return record, errors, peers
+
+def extract_metadata_from_html(html: str, host: str) -> Dict[str, Any]:
+    """
+    HTML에서 메타데이터 추출
+    """
+    import re
+    from html.parser import HTMLParser
+    
+    result = {
+        "description": None,
+        "languages": []
+    }
+    
+    # 간단한 정규식으로 메타 태그 추출 (의존성 없이)
+    description_patterns = [
+        r'<meta\s+name="description"\s+content="([^"]*)"',
+        r'<meta\s+property="og:description"\s+content="([^"]*)"',
+        r'<meta\s+name="twitter:description"\s+content="([^"]*)"',
+        r'<meta\s+property="twitter:description"\s+content="([^"]*)"'
+    ]
+    
+    # 설명 추출
+    for pattern in description_patterns:
+        match = re.search(pattern, html, re.IGNORECASE)
+        if match:
+            description = match.group(1).strip()
+            if description and len(description) > 10:  # 너무 짧은 설명은 무시
+                result["description"] = description
+                break
+    
+    # 언어 추출 시도
+    lang_match = re.search(r'<html[^>]*\slang="([^"]*)"', html, re.IGNORECASE)
+    if not lang_match:
+        lang_match = re.search(r'<html[^>]*\sxml:lang="([^"]*)"', html, re.IGNORECASE)
+    
+    if lang_match:
+        lang_code = lang_match.group(1).strip()
+        if lang_code:
+            normalized = normalize_language_code(lang_code)
+            if normalized:
+                result["languages"].append(normalized)
+    
+    return result
+
+def fetch_site_metadata(base_url: str, host: str, include_description: bool = True) -> Optional[Dict[str, Any]]:
+    """
+    사이트 메타데이터에서 설명과 언어 정보 추출
+    """
+    if not include_description:
+        return None
+
+    if not base_url.startswith(('http://', 'https://')):
+        base_url = f"https://{host}"
+
+    try:
+        headers = {
+            "User-Agent": USER_AGENT,
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+        }
+        
+        # requests 사용 시
+        if requests is not None:
+            import requests as _req
+            try:
+                resp = _req.get(base_url, headers=headers, timeout=TIMEOUT, allow_redirects=True)
+                if resp.status_code != 200:
+                    return None
+                
+                content_type = resp.headers.get('content-type', '')
+                if 'text/html' not in content_type:
+                    return None
+                
+                return extract_metadata_from_html(resp.text, host)
+            except _req.exceptions.RequestException:
+                return None
+        
+        # urllib 사용 시
+        else:
+            import urllib.request
+            request = urllib.request.Request(base_url, headers=headers)
+            with urllib.request.urlopen(request, timeout=TIMEOUT) as resp:
+                if resp.status != 200:
+                    return None
+                
+                content_type = resp.headers.get('content-type', '')
+                if 'text/html' not in content_type:
+                    return None
+                
+                html = resp.read().decode('utf-8', errors='ignore')
+                return extract_metadata_from_html(html, host)
+                
+    except Exception:
+        return None
+
+    return None
+
+def fetch_instance_details(base_url: str, host: str) -> Optional[Dict[str, Any]]:
+    """
+    NodeInfo에서 설명을 가져오지 못했을 때 사이트 메타데이터에서 설명 추출
+    """
+    # NodeInfo에서 이미 시도했으므로 바로 사이트 메타데이터로 이동
+    site_metadata = fetch_site_metadata(base_url, host, include_description=True)
+    
+    if site_metadata and site_metadata.get("description"):
+        return {
+            "description": site_metadata["description"],
+            "languages": site_metadata.get("languages", [])
+        }
+    
+    return None
 
 def extract_peer_hosts_from_nodeinfo(document: Any) -> Set[str]:
     hosts: Set[str] = set()

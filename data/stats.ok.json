@@ -1,5 +1,1362 @@
 [
   {
+    "host": "0a1b.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:40:49Z",
+    "nodeinfo_description": "Thoughts, stories and ideas."
+  },
+  {
+    "host": "0ch.tv",
+    "verified_activitypub": true,
+    "software": {
+      "name": "peertube",
+      "version": "7.3.0"
+    },
+    "open_registrations": true,
+    "users_total": 2,
+    "users_active_month": 0,
+    "statuses": 12,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:40:49Z",
+    "nodeinfo_description": "PeerTube, an ActivityPub-federated video streaming platform using P2P directly in your web browser."
+  },
+  {
+    "host": "0lb.be",
+    "verified_activitypub": true,
+    "software": {
+      "name": "hometown",
+      "version": "4.2.17+hometown-1.1.2"
+    },
+    "open_registrations": false,
+    "users_total": 8,
+    "users_active_month": 4,
+    "statuses": 1950,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T15:56:23Z"
+  },
+  {
+    "host": "0rb.it",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.2.27"
+    },
+    "open_registrations": false,
+    "users_total": 7,
+    "users_active_month": 1,
+    "statuses": 21,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T15:56:23Z"
+  },
+  {
+    "host": "0v0.ch",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.3.13"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 50,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "A tiny Mastodon instance."
+  },
+  {
+    "host": "0verti.me",
+    "verified_activitypub": true,
+    "software": {
+      "name": "pleroma",
+      "version": "2.5.0"
+    },
+    "open_registrations": false,
+    "users_total": 4,
+    "users_active_month": 1,
+    "statuses": 193,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Pleroma: An efficient and flexible fediverse server"
+  },
+  {
+    "host": "0w0.best",
+    "verified_activitypub": true,
+    "software": {
+      "name": "sharkey",
+      "version": "2025.5.2-dev-stelpolva-3+gf1d3dcecb2"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": 1,
+    "statuses": 51,
+    "languages_detected": [
+      "en",
+      "ja"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "A Hi!Link Project.<br>\nWe <span style=\"color: #F488D3\">Share</span>, We <span style=\"color: #AFDDFF\">Link</span>.<br>在这里，分享即联结。以开放、尊重和多样性为核心，我们致力于为每一位用户打造自由表达与深度连接的社交空间。"
+  },
+  {
+    "host": "0x.trans.fail",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.1+git-ee4294a"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 3527,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "A tiny instance for a snowflake or two."
+  },
+  {
+    "host": "0x000.co",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": 2,
+    "statuses": 172,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Single instance server run by James Martin."
+  },
+  {
+    "host": "0x123.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.20.2+git-3cf4383"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 7,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "You know the drill."
+  },
+  {
+    "host": "0x212.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 355,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "0x212.com is a general purpose server and accounts are invite only."
+  },
+  {
+    "host": "0x7c26.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "sharkey",
+      "version": "2025.4.4"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "a good server."
+  },
+  {
+    "host": "0xdd.org.ru",
+    "verified_activitypub": true,
+    "software": {
+      "name": "lemmy",
+      "version": "0.19.13"
+    },
+    "open_registrations": true,
+    "users_total": 4,
+    "users_active_month": 2,
+    "statuses": 238,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T15:56:23Z"
+  },
+  {
+    "host": "0xh1.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Thoughts on frontend, crypto, and the stuff in between."
+  },
+  {
+    "host": "0xkeesmark.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Blockchain Security"
+  },
+  {
+    "host": "100terres.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 7,
+    "languages_detected": [
+      "en",
+      "fr"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Ceci est mon instance personnelle. Je prévois de l'utiliser pour rester en contact avec mes amis et ma famille ainsi que suivre ce qui se passe dans l'actualité sans dépendre des GAFAM de ce monde."
+  },
+  {
+    "host": "1040ste.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.4.8"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": 1,
+    "statuses": 7245,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Brad's personal instance"
+  },
+  {
+    "host": "10base2.dev",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.3.14"
+    },
+    "open_registrations": true,
+    "users_total": 11,
+    "users_active_month": 4,
+    "statuses": 1652,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "A server for friendly geeks looking for a place to call home. Managed by @monkeyninja@10base2.dev"
+  },
+  {
+    "host": "10mb.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": 1,
+    "statuses": 848,
+    "languages_detected": [
+      "en",
+      "no",
+      "da"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "10Meisterbaelle's private server"
+  },
+  {
+    "host": "1132don.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": true,
+    "users_total": 15,
+    "users_active_month": 3,
+    "statuses": 251,
+    "languages_detected": [
+      "ja"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "個人運用です"
+  },
+  {
+    "host": "11n.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "snac",
+      "version": "2.84"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 707,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T15:56:23Z"
+  },
+  {
+    "host": "123nz.nl",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 4,
+    "users_active_month": 4,
+    "statuses": 204,
+    "languages_detected": [
+      "en",
+      "nl"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Reizen en werken in Nieuw-Zeeland is 1-2-3 geregeld"
+  },
+  {
+    "host": "128bit.noblogs.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": true,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 57,
+    "languages_detected": [
+      "en",
+      "hr"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "&gt;&gt; kultura, tehnologija, utopija"
+  },
+  {
+    "host": "128k.site",
+    "verified_activitypub": true,
+    "software": {
+      "name": "writefreely",
+      "version": "0.16.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 11,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "<a class=\"masto-link\" rel=\"me\" href=\"https://gascoigne.social/@Charles\">Mastodon</a>"
+  },
+  {
+    "host": "12xu.xyz",
+    "verified_activitypub": true,
+    "software": {
+      "name": "akkoma",
+      "version": "3.16.0-0-g6d88834"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": 2,
+    "statuses": 1473,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Akkoma: The cooler fediverse server"
+  },
+  {
+    "host": "1312blogs.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "writefreely",
+      "version": "0.16.0"
+    },
+    "open_registrations": true,
+    "users_total": 638,
+    "users_active_month": 71,
+    "statuses": 1304,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Connecting radical people. Non commercial, antifascist, antisexist, privacy-oriented blog platform."
+  },
+  {
+    "host": "1312press.noblogs.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": true,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 30,
+    "languages_detected": [
+      "en",
+      "it"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Anarchist zine distro out of Occupied Coastal Salish Territories. Anti-Colonial, Anti-Fascist, Anti-Police."
+  },
+  {
+    "host": "13bells.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": true,
+    "users_total": 6,
+    "users_active_month": 3,
+    "statuses": 11704,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "It was a bright cold day in April, and the clocks were striking thirteen. Welcome to 13 Bells, a respite from the commercial social media platforms."
+  },
+  {
+    "host": "15-15-15.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.3.6"
+    },
+    "open_registrations": false,
+    "users_total": 22,
+    "users_active_month": 5,
+    "statuses": 1560,
+    "languages_detected": [
+      "en",
+      "es"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Instancia Mastodon de la revista 15/15\\15, gestionada por el Instituto Resiliencia / Asociación Touda. Comunidad virtual de personas suscriptoras, colaboradoras, simbióticas y amigas de 15/15\\15."
+  },
+  {
+    "host": "1555curation.synaps.media",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Thoughts, stories and ideas."
+  },
+  {
+    "host": "1564b.mymidnight.blog",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T15:56:23Z",
+    "nodeinfo_description": "Experts in partnerships, community, connection, and communication. Emphasizing humans first."
+  },
+  {
+    "host": "1foo.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.2.26"
+    },
+    "open_registrations": false,
+    "users_total": 17,
+    "users_active_month": 7,
+    "statuses": 8547,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "1m2lab.anvil.top",
+    "verified_activitypub": true,
+    "software": {
+      "name": "iceshrimp",
+      "version": "2023.12.14"
+    },
+    "open_registrations": true,
+    "users_total": 4,
+    "users_active_month": 1,
+    "statuses": 2489,
+    "languages_detected": [
+      "en",
+      "ca"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "1m² Elecronics Lab's Instance by AlderForrest."
+  },
+  {
+    "host": "1password.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": false,
+    "users_total": 14,
+    "users_active_month": 5,
+    "statuses": 1056,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Welcome to 1password.social, the home on Mastodon for 1Password. We're building a safer, simpler digital future for everyone."
+  },
+  {
+    "host": "1ppm.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": 4,
+    "statuses": 2391,
+    "languages_detected": [
+      "en",
+      "de"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Persönliches Blog"
+  },
+  {
+    "host": "1q43.blog",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": 1,
+    "statuses": 103,
+    "languages_detected": [
+      "ja",
+      "zh-cn"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "评论尸的自留地"
+  },
+  {
+    "host": "1t4.dk",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.1+git-6574dc8"
+    },
+    "open_registrations": true,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 16,
+    "languages_detected": [
+      "en",
+      "da"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Et sted for danske bordrollespillere. Find andre spillere, del scenarier, billeder, logbøger og meget mere. Ingen reklamer, ingen algoritmer, kun nørderi."
+  },
+  {
+    "host": "1uca.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "kmyblue",
+      "version": "4.4.2+kmyblue.19.2-lts"
+    },
+    "open_registrations": true,
+    "users_total": 18,
+    "users_active_month": 11,
+    "statuses": 85555,
+    "languages_detected": [
+      "en",
+      "ja"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "AICFeDiは、ローカルタイムライン（LTL）でAI同士が会話をしているインスタンスです。もちろんユーザーも自由に会話をすることができます。"
+  },
+  {
+    "host": "2-blog.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": 4,
+    "statuses": 812,
+    "languages_detected": [
+      "en",
+      "de"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Luca Hammer bloggt über Social Media Analyse, Netzwerkvisualisierung und sonstige Dinge, die ihn beschäftigen."
+  },
+  {
+    "host": "21cm.ca",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.0"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": 2,
+    "statuses": 631,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Private watering hole in the Fediverse."
+  },
+  {
+    "host": "21yylideri.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "tr",
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "21. yüzyılda liderlik, kişisel gelişim, motivasyon ve girişimcilik kavramları üzerine güncel rehber ve makaleler"
+  },
+  {
+    "host": "24-26.notreclas.se",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "fr",
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Bienvenue dans notre classe"
+  },
+  {
+    "host": "2done.club",
+    "verified_activitypub": true,
+    "software": {
+      "name": "misskey",
+      "version": "2024.2.0"
+    },
+    "open_registrations": false,
+    "users_total": 4,
+    "users_active_month": null,
+    "statuses": 3971,
+    "languages_detected": [
+      "ja"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "にどねクラブは水飲み放題いいね見放題"
+  },
+  {
+    "host": "2mind.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": true,
+    "users_total": 3,
+    "users_active_month": 3,
+    "statuses": 274,
+    "languages_detected": [
+      "en",
+      "de"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Medien für Menschen"
+  },
+  {
+    "host": "2nd90.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Actionable career strategy for software engineers on the path to mastery, with insights from a Principal Engineer"
+  },
+  {
+    "host": "2tonwaffle.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "The 2TonWaffle is a independent endeavor that covers alternative platforms, independent creators, and the indie gaming world."
+  },
+  {
+    "host": "2tonwaffle.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 331,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "2underground.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "owncast",
+      "version": "0.2.3"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 193,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "DJs live in the mix"
+  },
+  {
+    "host": "300bps.kr",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.3.9"
+    },
+    "open_registrations": true,
+    "users_total": 10,
+    "users_active_month": 3,
+    "statuses": 805,
+    "languages_detected": [
+      "en",
+      "ko"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "IT를 좋아하는 분들의 아재력 충만한 해우소가 됐으면 합니다."
+  },
+  {
+    "host": "30d.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.4.2"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 0,
+    "statuses": 2,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "31337infosec.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Flipping Cybersecurity on it&#x27;s Head!  Offering the Cyber Threat Weekly newsletter.  Curated security news, focused on the latest cyber threat trends and adversary behavior patterns."
+  },
+  {
+    "host": "316room.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "misskey",
+      "version": "2025.5.0"
+    },
+    "open_registrations": false,
+    "users_total": 16,
+    "users_active_month": null,
+    "statuses": 8396,
+    "languages_detected": [
+      "ja"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "個人鯖。招待制です。\n交友のある方で、興味がありましたらお声がけください～"
+  },
+  {
+    "host": "333thats33s.cc",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.0+glitch"
+    },
+    "open_registrations": true,
+    "users_total": 6,
+    "users_active_month": 2,
+    "statuses": 975,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Hi, I'm Kate! You can find out more about me at https://kate.fail"
+  },
+  {
+    "host": "36photos.de",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 19,
+    "languages_detected": [
+      "en",
+      "de"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Der Photoreiseblog"
+  },
+  {
+    "host": "39sounds.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "3.5.10"
+    },
+    "open_registrations": false,
+    "users_total": 11,
+    "users_active_month": 0,
+    "statuses": 2072,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "3amtarot.ghost.io",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "devils &amp; fools: a newsletter exploring tarot, numerology, creativity &amp; community"
+  },
+  {
+    "host": "3d.bonn.digital",
+    "verified_activitypub": true,
+    "software": {
+      "name": "manyfold",
+      "version": "0.129.1"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": 0,
+    "statuses": null,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "3d.odinlab.xyz",
+    "verified_activitypub": true,
+    "software": {
+      "name": "Manyfold",
+      "version": "v0.99.1"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": 0,
+    "statuses": null,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "3dcandy.live",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": true,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 318,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "3dp.chat",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": true,
+    "users_total": 184,
+    "users_active_month": 21,
+    "statuses": 11237,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "3D Printing Community"
+  },
+  {
+    "host": "3m.fyi",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Here is where I try to make sense of the the world, how we fix and maintain it, how we can best connect and do things with each other. I&#x27;m from Dallas, went to Wesleyan in Connecticut, lived in Tokyo, Washington DC, Malawi, Palestine, Albania, Tbilisi, London, San Francisco, and"
+  },
+  {
+    "host": "3rdwall.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": false,
+    "users_total": 6,
+    "users_active_month": 1,
+    "statuses": 49,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "3reate.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 0,
+    "languages_detected": [
+      "en",
+      "de"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Art, Science, Tech"
+  },
+  {
+    "host": "3v.is",
+    "verified_activitypub": true,
+    "software": {
+      "name": "akkoma",
+      "version": "3.10.2"
+    },
+    "open_registrations": true,
+    "users_total": 15,
+    "users_active_month": 4,
+    "statuses": 358,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "3V.IS:  What are you working on?"
+  },
+  {
+    "host": "3z.news",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "read the latest updates from 3z.rent and 3z.studio - here you can find our TMI, fun surprises and explanations on how and why we do what we do"
+  },
+  {
+    "host": "3zi.ru",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": true,
+    "users_total": 32,
+    "users_active_month": 16,
+    "statuses": 418926,
+    "languages_detected": [
+      "en",
+      "ru"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Тризи.ру - узел децентрализованной сети Mastodon для свободного общения! Ссылка для материальной помощи администрации > https://yoomoney.ru/to/4100119397243871"
+  },
+  {
+    "host": "400nm.kvarkki.nexus",
+    "verified_activitypub": true,
+    "software": {
+      "name": "pixelfed",
+      "version": "0.12.6"
+    },
+    "open_registrations": true,
+    "users_total": 3,
+    "users_active_month": 1,
+    "statuses": 1389,
+    "languages_detected": [
+      "fi",
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Tuokioita, räpsyjä, kuvia. Maallikkotasolta maallikoille."
+  },
+  {
+    "host": "40deea.dev",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "40DEEA tech blog is a lot like a successful pull request: clean, well-documented, and ready to make a difference. Dive into dev life and tech with us."
+  },
+  {
+    "host": "438punk.house",
+    "verified_activitypub": true,
+    "software": {
+      "name": "hometown",
+      "version": "4.2.17+hometown-1.1.2"
+    },
+    "open_registrations": false,
+    "users_total": 291,
+    "users_active_month": 137,
+    "statuses": 75070,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "45sukey.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "misskey",
+      "version": "2025.10.1-45sukey.5"
+    },
+    "open_registrations": true,
+    "users_total": 1368,
+    "users_active_month": null,
+    "statuses": 2857102,
+    "languages_detected": [
+      "en",
+      "ja"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "シコるのが好きな人のためのMisskeyサーバーです。<br>\n18歳以上であればどなたでもご利用できます。<br>\n※ユーザー同士の性的な出会いを目的とするサーバーではありません。<br>"
+  },
+  {
+    "host": "49-12-9-109.lovense.club",
+    "verified_activitypub": true,
+    "software": {
+      "name": "gotosocial",
+      "version": "0.19.0+git-ab2044e"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": null,
+    "statuses": 90,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "A normal Fediverse instance, nothing to see here ^_^"
+  },
+  {
+    "host": "4bear.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.3.4"
+    },
+    "open_registrations": true,
+    "users_total": 1571,
+    "users_active_month": 175,
+    "statuses": 163786,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Mastodon Server for the LGBT+ Bear Community. Be Nice. Be over 18 years old. Fill out \"Why do you want to join?\" so we know you're here for the right reasons."
+  },
+  {
+    "host": "4cnc.colaborativas.net",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 15,
+    "languages_detected": [
+      "en",
+      "pt"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Ação de Mídia Livre da Rede da Cultura Digital"
+  },
+  {
+    "host": "4d2.social",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.3.8"
+    },
+    "open_registrations": true,
+    "users_total": 38,
+    "users_active_month": 9,
+    "statuses": 553,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Public Mastodon instance for anarchists, cypherpunks and retrocomputing enthusiasts, courtesy of 4d2 dot org"
+  },
+  {
+    "host": "4four.org",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.4.1"
+    },
+    "open_registrations": false,
+    "users_total": 33,
+    "users_active_month": 1,
+    "statuses": 122,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Based around the house, techno, and electro scene.  Run by, producer and DJ, Agile Kind.\r\n\r\nIf you're into underground electronic music, sign up!"
+  },
+  {
+    "host": "4pecc.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "ghost",
+      "version": "0.1.0"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": null,
+    "statuses": 0,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "FREE 15-min B2G and B2B Consultation available. Put Your Success On Auto-pilot with our Freight Dispatch &amp; Private Money Lending service. Call/Text: +1 (678) 369-3049"
+  },
+  {
+    "host": "4score7pongs.com",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 27,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "We&#039;re bringing people together through gaming and charity."
+  },
+  {
+    "host": "4x31.dev",
+    "verified_activitypub": true,
+    "software": {
+      "name": "writefreely",
+      "version": "0.16.0"
+    },
+    "open_registrations": false,
+    "users_total": 2,
+    "users_active_month": null,
+    "statuses": 126,
+    "languages_detected": [
+      "en",
+      "tl"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Reading. Writing."
+  },
+  {
+    "host": "503junk.house",
+    "verified_activitypub": true,
+    "software": {
+      "name": "hometown",
+      "version": "4.2.17+hometown-1.1.2"
+    },
+    "open_registrations": true,
+    "users_total": 20,
+    "users_active_month": 8,
+    "statuses": 11348,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "50hz.club",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 1,
+    "users_active_month": 1,
+    "statuses": 2,
+    "languages_detected": [],
+    "fetched_at": "2025-11-18T16:06:45Z"
+  },
+  {
+    "host": "50pd.uk",
+    "verified_activitypub": true,
+    "software": {
+      "name": "wordpress",
+      "version": "6.8"
+    },
+    "open_registrations": false,
+    "users_total": 3,
+    "users_active_month": 1,
+    "statuses": 37,
+    "languages_detected": [
+      "en"
+    ],
+    "fetched_at": "2025-11-18T16:06:45Z",
+    "nodeinfo_description": "Older people challenging isolation and exclusion"
+  },
+  {
     "host": "aoharu.place",
     "verified_activitypub": true,
     "software": {
@@ -9,14 +1366,14 @@
     "open_registrations": true,
     "users_total": 16,
     "users_active_month": null,
-    "statuses": 2240,
+    "statuses": 2243,
     "languages_detected": [
-      "ko",
       "ja",
+      "ko",
       "en"
     ],
-    "fetched_at": "2025-11-18T12:14:22Z",
-    "nodeinfo_description": "청춘(靑春)들이 이끌어가는 자유 주제 페디버스(연합우주) 인스턴스 서버입니다. 青春が率いる自由な主題のフェディバース上のサーバーです。 \nYour adolescent Fediverse instance for free talking, with a liberty. \n \n[ since 2024/12/25 ] \n \n!! 무단 크롤링을 통한 AI 학습에 사용 금지 !! \n!! AI学習に使用禁止 !! \n!! Not for AI training !!"
+    "fetched_at": "2025-11-18T15:27:57Z",
+    "nodeinfo_description": "청춘(靑春)들이 이끌어가는 자유 주제 페디버스(연합우주) 인스턴스 서버입니다.<br />青春が率いる自由な主題のフェディバース上のサーバーです。<br />\nYour adolescent Fediverse instance for free talking, with a liberty.<br />\n<br />\n[ since 2024/12/25 ]<br />\n<br />\n!! 무단 크롤링을 통한 AI 학습에 사용 금지 !!<br />\n!! AI学習に使用禁止 !!<br />\n!! Not for AI training !!"
   },
   {
     "host": "bakedbean.xyz",
@@ -28,9 +1385,11 @@
     "open_registrations": true,
     "users_total": 136,
     "users_active_month": 30,
-    "statuses": 175411,
-    "languages_detected": [],
-    "fetched_at": "2025-11-18T14:43:41Z",
+    "statuses": 175423,
+    "languages_detected": [
+      "ko"
+    ],
+    "fetched_at": "2025-11-18T15:11:23Z",
     "nodeinfo_description": "동네 어디에나 있는 슈퍼마켓 입니다.\r\n개인 서버에서 운영되고 있습니다."
   },
   {
@@ -163,6 +1522,24 @@
     ],
     "fetched_at": "2025-11-18T11:35:32Z",
     "nodeinfo_description": "A general-purpose Mastodon server with a 500 character limit. All languages are welcome."
+  },
+  {
+    "host": "mustard.blog",
+    "verified_activitypub": true,
+    "software": {
+      "name": "mastodon",
+      "version": "4.5.1"
+    },
+    "open_registrations": true,
+    "users_total": 2048,
+    "users_active_month": 194,
+    "statuses": 282205,
+    "languages_detected": [
+      "en",
+      "ko"
+    ],
+    "fetched_at": "2025-11-18T15:13:58Z",
+    "nodeinfo_description": "머스타드(Mustard)는 여러분의 일상에 톡 쏘는 즐거움을 더하는 연합 뷔페입니다."
   },
   {
     "host": "qdon.space",
