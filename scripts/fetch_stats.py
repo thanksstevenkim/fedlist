@@ -31,6 +31,57 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Inputs
 INSTANCES_PATH = BASE_DIR / "data" / "instances.json"
 
+LANG_CANON = {
+    # 영어
+    "en": "en",
+    "en-us": "en",
+    "en-gb": "en",
+    "english": "en",
+    "eng": "en",
+    "english-EN": "en",
+
+    # 한국어
+    "ko": "ko",
+    "kr": "ko",
+    "ko-kr": "ko",
+    "korean": "ko",
+    "korean-KO": "ko",
+    "한국어": "ko",
+    "조선어": "ko",
+
+    # 일본어
+    "ja": "ja",
+    "jp": "ja",
+    "japanese": "ja",
+    "日本語": "ja",
+
+    # 중국어 (필요하면 더 세분화)
+    "zh": "zh",
+    "zh-cn": "zh",
+    "zh-tw": "zh",
+    "chinese": "zh",
+    "中文": "zh",
+
+    "pt": "pt",
+    "pt-br": "pt",
+    "portuguese": "pt",
+    "portugu-S": "pt",
+
+    "bn-BD": "bn",
+    "german": "de",
+    "de": "de",
+    "deutsch": "de",
+    "ger": "de",
+    "fr": "fr",
+    "french": "fr",
+    "french-FR": "fr",
+    "fren": "fr",
+    "polish": "pl",
+    "pl": "pl",
+    "dk": "da",
+    "spanish": "es",
+}
+
 # Outputs (split)
 ALIASES_PATH = BASE_DIR / "data" / "host_aliases.json"
 STATS_OK_PATH  = BASE_DIR / "data" / "stats.ok.json"
@@ -1272,13 +1323,61 @@ def normalize_peer_host(value: Any) -> Optional[str]:
     return text.lower()
 
 
-def normalize_language_code(value: Any) -> Optional[str]:
+def normalize_language_code(value) -> Optional[str]:
+    """
+    다양한 표기("en-gb", "korean-KO", "EN_us", "日本語")를
+    최대한 간단한 ISO 639-1 코드("en", "ko", "ja", "zh" 등)로 정규화.
+    못 알아먹겠으면 None 리턴해서 버린다.
+    """
     if value is None:
         return None
-    text = str(value).strip()
-    if not text:
+
+    # 리스트, 튜플이 들어오면 대충 첫 번째만 쓴다 (보통 안 들어오게 설계하는 게 좋고)
+    if isinstance(value, (list, tuple, set)):
+        if not value:
+            return None
+        value = next(iter(value))
+
+    s = str(value).strip()
+    if not s:
         return None
-    return text.lower()
+
+    # 언더스코어 → 하이픈
+    s = s.replace("_", "-")
+    s_lower = s.lower()
+
+    # 1) 직접 매핑 테이블에 있으면 바로 반환
+    if s_lower in LANG_CANON:
+        return LANG_CANON[s_lower]
+
+    # 2) "korean-KO" 같은 형태를 name/region 으로 나눠서 다시 시도
+    #    (영문/한글/일본어 등 단어 + 지역 코드 섞인 경우)
+    parts = re.split(r"[^0-9a-z\uac00-\ud7a3\u3040-\u30ff\u4e00-\u9fff]+", s_lower)
+    parts = [p for p in parts if p]
+    if len(parts) == 2:
+        candidate = f"{parts[0]}-{parts[1]}"
+        if candidate in LANG_CANON:
+            return LANG_CANON[candidate]
+        if parts[0] in LANG_CANON:
+            return LANG_CANON[parts[0]]
+
+    # 3) 순수 이름(english, korean, 日本語 등)만 들어온 경우
+    if s_lower in LANG_CANON:
+        return LANG_CANON[s_lower]
+
+    # 4) 지역 태그 달린 ISO 코드(en-gb, fr-ca 등) → 기본 두 글자로 통일
+    if re.fullmatch(r"[a-z]{2}-[a-z0-9]{2,3}", s_lower):
+        base = s_lower.split("-", 1)[0]
+        if base in LANG_CANON:
+            return LANG_CANON[base]
+        return base  # 그래도 2글자면 그냥 그걸 쓴다
+
+    # 5) 깔끔한 두 글자 코드면 그대로
+    if re.fullmatch(r"[a-z]{2}", s_lower):
+        return s_lower
+
+    # 6) 나머지는 버림
+    return None
 
 
 def first_int(*values: Any) -> Optional[int]:

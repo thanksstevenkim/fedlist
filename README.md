@@ -1,4 +1,5 @@
 # 연합우주를 여행하는 히치하이커를 위한 안내서
+
 # The Hitchhiker's Guide to the Fediverse
 
 정적 HTML, CSS, JS로 구성된 한국어 페디버스 인스턴스 목록입니다.  
@@ -11,14 +12,14 @@ GitHub Pages로 그대로 호스팅할 수 있으며, 검색·필터·정렬 기
 
 ## 📁 데이터 구조
 
-| 파일 | 설명 |
-|------|------|
-| `data/instances.json` | 수동으로 등록한 인스턴스 목록 |
-| `data/stats.ok.json` | ActivityPub 검증 성공 및 통계 이상치 없는 정상 인스턴스 |
-| `data/stats.bad.json` | 검증 실패·네트워크 오류·이상치 등 비정상 인스턴스 |
-| `data/peer_suggestions.json` | 연합 관계를 통해 발견된 새 인스턴스 후보 |
-| `data/filtered_peers.json` | 스팸/광고 도메인을 걸러낸 최종 후보 |
-| `data/spam_filtered.log.json` | 스팸 필터에서 제외된 도메인과 이유 로그 |
+| 파일                          | 설명                                                    |
+| ----------------------------- | ------------------------------------------------------- |
+| `data/instances.json`         | 수동으로 등록한 인스턴스 목록                           |
+| `data/stats.ok.json`          | ActivityPub 검증 성공 및 통계 이상치 없는 정상 인스턴스 |
+| `data/stats.bad.json`         | 검증 실패·네트워크 오류·이상치 등 비정상 인스턴스       |
+| `data/peer_suggestions.json`  | 연합 관계를 통해 발견된 새 인스턴스 후보                |
+| `data/filtered_peers.json`    | 스팸/광고 도메인을 걸러낸 최종 후보                     |
+| `data/spam_filtered.log.json` | 스팸 필터에서 제외된 도메인과 이유 로그                 |
 
 ---
 
@@ -34,12 +35,12 @@ GitHub Pages로 그대로 호스팅할 수 있으며, 검색·필터·정렬 기
 
 ```bash
 python scripts/fetch_stats.py --discover-peers
-````
+```
 
-* NodeInfo 및 소프트웨어별 API의 `peers` 정보를 수집합니다.
-* 결과: `data/peer_suggestions.json`
-* 이미 검사된(host가 `stats.ok.json` 또는 `stats.bad.json`에 존재하는) 도메인은 자동으로 제외됩니다.
-* 표준 출력으로 내보내려면 `--peer-output -`을 사용할 수 있습니다.
+- NodeInfo 및 소프트웨어별 API의 `peers` 정보를 수집합니다.
+- 결과: `data/peer_suggestions.json`
+- 이미 검사된(host가 `stats.ok.json` 또는 `stats.bad.json`에 존재하는) 도메인은 자동으로 제외됩니다.
+- 표준 출력으로 내보내려면 `--peer-output -`을 사용할 수 있습니다.
 
 ---
 
@@ -51,21 +52,23 @@ python scripts/fetch_stats.py --discover-peers
 python scripts/filter_spam.py
 ```
 
-* 입력: `data/peer_suggestions.json`
-* 출력:
+- 입력: `data/peer_suggestions.json`
+- 출력:
 
-  * `data/filtered_peers.json` — 통과된 후보 (다음 단계 입력으로 사용)
-  * `data/spam_filtered.log.json` — 제외된 도메인과 사유 기록
-* 필터링 기준:
+  - `data/filtered_peers.json` — 통과된 후보 (다음 단계 입력으로 사용)
+  - `data/spam_filtered.log.json` — 제외된 도메인과 사유 기록
 
-  * 의심스러운 TLD (`.tk`, `.ml`, `.xyz`, 등)
-  * 스팸/성인/도박/암호화폐 등 키워드
-  * 숫자·반복 패턴 도메인
-  * (존재 시) ActivityPub 검증 실패 또는 비정상 통계
-* 옵션:
+- 필터링 기준:
 
-  * `--blocklist <파일>` : 추가 차단 목록 지정
-  * `--dry-run` : 결과를 파일로 저장하지 않고 콘솔로만 출력
+  - 의심스러운 TLD (`.tk`, `.ml`, `.xyz`, 등)
+  - 스팸/성인/도박/암호화폐 등 키워드
+  - 숫자·반복 패턴 도메인
+  - (존재 시) ActivityPub 검증 실패 또는 비정상 통계
+
+- 옵션:
+
+  - `--blocklist <파일>` : 추가 차단 목록 지정
+  - `--dry-run` : 결과를 파일로 저장하지 않고 콘솔로만 출력
 
 > 💡 이 단계에서 미리 걸러내면, `fetch_stats.py`가 불필요한 네트워크 요청을 하지 않아 훨씬 빠르게 동작합니다.
 
@@ -79,35 +82,53 @@ python scripts/filter_spam.py
 python scripts/fetch_stats.py --input data/filtered_peers.json
 ```
 
-* 결과:
+- 결과:
 
-  * `data/stats.ok.json` — ActivityPub 검증 성공 및 정상 통계
-  * `data/stats.bad.json` — 검증 실패, 미응답, 이상치, 비정상 통계 등
-* 인스턴스 1개 처리마다 즉시 저장되므로, 중간에 중단되어도 이미 수집된 데이터는 보존됩니다.
-* `--input`을 사용하면 이미 기록된 호스트는 자동으로 스킵합니다.
-* `requests` 패키지를 설치하면 HTTPS 요청 성능이 향상됩니다.
-* 최초 실행 시 기존 `stats.json`이 존재하면 자동으로 OK/BAD 구조로 마이그레이션됩니다.
+  - `data/stats.ok.json` — ActivityPub 검증 성공 및 정상 통계
+  - `data/stats.bad.json` — 검증 실패, 미응답, 이상치, 비정상 통계 등
+
+- 인스턴스 1개 처리마다 즉시 저장되므로, 중간에 중단되어도 이미 수집된 데이터는 보존됩니다.
+- `--input`을 사용하면 이미 기록된 호스트는 자동으로 스킵합니다.
+- `requests` 패키지를 설치하면 HTTPS 요청 성능이 향상됩니다.
+- 최초 실행 시 기존 `stats.json`이 존재하면 자동으로 OK/BAD 구조로 마이그레이션됩니다.
 
 ---
 
 ## 🧩 스크립트 요약
 
-| 스크립트             | 역할                                        |
-| ---------------- | ----------------------------------------- |
-| `fetch_stats.py` | ActivityPub 노드/플랫폼별 API를 통해 통계 수집 및 검증    |
-| `filter_spam.py` | 도메인 이름 기반 스팸·광고·비정상 후보 자동 필터링             |
+| 스크립트         | 역할                                                   |
+| ---------------- | ------------------------------------------------------ |
+| `fetch_stats.py` | ActivityPub 노드/플랫폼별 API를 통해 통계 수집 및 검증 |
+| `filter_spam.py` | 도메인 이름 기반 스팸·광고·비정상 후보 자동 필터링     |
 | `update.yml`     | (옵션) GitHub Actions를 이용해 자동 갱신 및 Pages 배포 |
 
 ---
 
 ## 🖥️ 웹 UI 기능
 
-* 검색창(`id="q"`) : 이름·설명을 실시간 부분 검색
-* 플랫폼 필터 : `instances.json` 기준 자동 생성
-* 통계 열 클릭 시 오름/내림차순 정렬
-* 언어 표시는 수동 언어 + 감지 언어 병합
-* 검증 실패 항목에는 “검증 실패” 뱃지가 표시
-* 가입 여부는 NodeInfo 기준으로 “열림 / 닫힘 / 불명” 구분
+### ✔ 이름/URL 통합
+
+- 인스턴스 이름이 바로 URL로 링크됨
+- URL 열 제거 → 표가 더 간결해짐
+
+### ✔ 가입 여부 토글 버튼
+
+- 체크박스 제거
+- "가입 닫힌 서버 표시" 버튼
+- 클릭 시 초록색 활성 상태 (`badge--ok` 스타일)
+
+### ✔ 검색 및 언어 필터 개선
+
+- 검색창 폭 확장
+- 언어 드롭다운은 자동 정규화된 언어명 표시 (예: `en` → "영어")
+
+### ✔ 기타 기능
+
+- 플랫폼 필터 자동 생성
+- 설명·이름 실시간 검색
+- 통계 열 정렬
+- 가입 여부 배지 표시
+- 비정상 인스턴스 자동 표시
 
 ---
 
@@ -117,9 +138,9 @@ python scripts/fetch_stats.py --input data/filtered_peers.json
 `fetch_stats.py`를 실행해 `stats.ok.json`과 `stats.bad.json`을 갱신하고
 GitHub Pages로 자동 배포합니다.
 
-* `GITHUB_TOKEN`에 `contents: write`, `pages: write` 권한이 필요합니다.
-* 제한된 조직 계정에서는 `repo` 권한을 가진 PAT을 `REPO_TOKEN`으로 등록하세요.
-* 로컬에서도 [`act`](https://github.com/nektos/act)로 `act -j update` 명령으로 테스트 가능합니다.
+- `GITHUB_TOKEN`에 `contents: write`, `pages: write` 권한이 필요합니다.
+- 제한된 조직 계정에서는 `repo` 권한을 가진 PAT을 `REPO_TOKEN`으로 등록하세요.
+- 로컬에서도 [`act`](https://github.com/nektos/act)로 `act -j update` 명령으로 테스트 가능합니다.
 
 ---
 
