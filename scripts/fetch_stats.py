@@ -80,6 +80,7 @@ LANG_CANON = {
     "pl": "pl",
     "dk": "da",
     "spanish": "es",
+    "sp": "es",
 }
 
 # Outputs (split)
