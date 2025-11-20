@@ -91,6 +91,8 @@ STATS_BAD_PATH = BASE_DIR / "data" / "stats.bad.json"
 # (Legacy) Single-file path retained for compatibility in helper logic
 STATS_PATH = BASE_DIR / "data" / "stats.json"
 
+MANUAL_OVERRIDES_PATH = BASE_DIR / "data" / "manual_overrides.json"
+
 # Network safety limits
 MAX_JSON_BYTES = 2_000_000  # 2MB soft cap for JSON payloads
 MAX_REDIRECTS = 5
@@ -258,6 +260,8 @@ def main() -> None:
     # 기존 ok/bad 파일을 각각 맵으로 적재
     ok_map, bad_map = load_existing_stats_maps()
 
+    manual_overrides = load_manual_overrides()
+
     discovered_hosts: Set[str] = set()
     processed = 0
     updated_ok = 0
@@ -265,6 +269,8 @@ def main() -> None:
 
     for instance in instances:
         record, errors, peers = process_instance(instance, now)
+
+        apply_manual_overrides(record, manual_overrides)
 
         had_errors = bool(errors)
         bucket = classify_record(record, had_errors)  # 'good' or 'bad'
@@ -461,7 +467,83 @@ def load_checked_hosts() -> Set[str]:
 
     return checked
 
+def load_manual_overrides() -> Dict[str, Dict[str, Any]]:
+    """
+    data/manual_overrides.json 을 읽어서
+    {host: { 필드: 값, ... }} 형태로 리턴.
+    """
+    if not MANUAL_OVERRIDES_PATH.exists():
+        return {}
 
+    try:
+        raw = json.loads(MANUAL_OVERRIDES_PATH.read_text(encoding="utf-8"))
+    except Exception as exc:
+        logging.warning("Could not load manual_overrides.json: %s", exc)
+        return {}
+
+    # dict 형태만 지원 ({"host": {...}, ...})
+    if not isinstance(raw, dict):
+        logging.warning("manual_overrides.json must be an object keyed by host.")
+        return {}
+
+    overrides: Dict[str, Dict[str, Any]] = {}
+    for host, value in raw.items():
+        if not isinstance(host, str) or not isinstance(value, dict):
+            continue
+        key = _normalize_host(host)
+        if not key:
+            continue
+        overrides[key] = value
+    return overrides
+
+
+def apply_manual_overrides(record: Dict[str, Any],
+                           overrides: Dict[str, Dict[str, Any]]) -> None:
+    """
+    하나의 레코드에 대해 manual_overrides 내용 강제 적용.
+    - 최상위 필드는 그대로 덮어씀
+    - software / languages_detected 는 약간 더 조심해서 처리
+    """
+    host = record.get("host")
+    if not isinstance(host, str):
+        return
+    key = _normalize_host(host)
+    if not key:
+        return
+
+    data = overrides.get(key)
+    if not data:
+        return
+
+    for field, value in data.items():
+        if field == "software" and isinstance(value, dict):
+            # software.name / software.version 수동 수정 허용
+            target = record.get("software")
+            if not isinstance(target, dict):
+                target = {}
+                record["software"] = target
+            if "name" in value and value["name"] is not None:
+                target["name"] = str(value["name"])
+            if "version" in value and value["version"] is not None:
+                target["version"] = str(value["version"])
+
+        elif field == "languages_detected":
+            # 언어 코드는 normalize_language_code로 정규화
+            if not isinstance(value, (list, tuple, set)):
+                continue
+            langs: List[str] = []
+            seen: set = set()
+            for v in value:
+                code = normalize_language_code(v)
+                if not code or code in seen:
+                    continue
+                seen.add(code)
+                langs.append(code)
+            record["languages_detected"] = langs
+
+        else:
+            # 그 외 필드는 그대로 덮어씀 (open_registrations, users_total 등)
+            record[field] = value
 
 # -------------------------------
 # Classification (good vs bad)
