@@ -231,6 +231,7 @@
       "aoderelay",
       "awakari",
       "buzzrelay",
+      "pub-relay",
       "selective-relay",
     ],
     bridge: [

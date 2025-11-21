@@ -1,4 +1,260 @@
 {
+  "0xdd.org.ru": {
+    "languages_detected": [
+      "ru", "en"
+    ]
+  },
+  "128bit.noblogs.org": {
+    "languages_detected": [
+      "hr"
+    ]
+  },
+  "1m2lab.anvil.top": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "1uca.com": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "2mind.org": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "3zi.ru": {
+    "languages_detected": [
+      "ru"
+    ]
+  },
+  "400nm.kvarkki.nexus": {
+    "languages_detected": [
+      "fi"
+    ]
+  },
+  "45sukey.net": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "73-110.pl": {
+    "languages_detected": [
+      "pl"
+    ]
+  },
+  "a2c.misskey.casa": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "abspeckgefluester.de": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "abyss.fun": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "acg.mn": {
+    "languages_detected": [
+      "zh"
+    ]
+  },
+  "activitypub.awakari.com": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "adsr.noblogs.org": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "afterspace.rocks": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "agenda.arree.bzh": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "agenda.eskoria.eus": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "agenda.fedi.cr": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "agenda.gayfr.social": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "agenda.projets-libres.org": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "agenda.reteappenninica.it": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "agenda.rouen-luttes.org": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "agenda.villemorte.fr": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "agendo.ch": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "aggloculture.net": {
+    "languages_detected": [
+      "ca"
+    ]
+  },
+  "agora.l0g.eu": {
+    "languages_detected": [
+      "pt"
+    ]
+  },
+  "ahsocial.ar": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "aisa.sp.unipi.it": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "aiyoku.xyz": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "akce.nolog.cz": {
+    "languages_detected": [
+      "cs"
+    ]
+  },
+  "akk.1d6.cc": {
+    "languages_detected": [
+      "zh"
+    ]
+  },
+  "akko.chir.rs": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "akkoma.noellabo.jp": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "akkomane.social": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "akuanduba.masto.host": {
+    "languages_detected": [
+      "pt"
+    ]
+  },
+  "ala.masto.host": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "alceawis.com": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "alentours.cc": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "allships.run": {
+    "languages_detected": [
+      "zh"
+    ]
+  },
+  "alpaka.garden": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "alsatistanbul.net": {
+    "languages_detected": [
+      "tr"
+    ]
+  },
+  "altmax.com.au": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "altovallelf.noblogs.org": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "alvarobayon.com": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "amarinha.gal": {
+    "languages_detected": [
+      "pt"
+    ]
+  },
+  "amateurfunk.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "amiverse.net": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "amt.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "an.errant.cloud": {
+    "languages_detected": [
+      "en"
+    ],
+    "open_registrations": false
+  },
+  "e.fo": {
+    "languages_detected": [
+      "hr"
+    ]
+  },
   "300bps.kr": {
     "languages_detected": [
       "ko"
@@ -15,6 +271,520 @@
   "chain.closetoya.com": {
     "languages_detected": [
       "ko", "en"
+    ]
+  },
+  "anarchistfront.noblogs.org": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "anarchitsupport.noblogs.org": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "anatemas.noblogs.org": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "anda.lu": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "andamunda.alda.ms": {
+    "languages_detected": [
+      "ru"
+    ]
+  },
+  "ani.work": {
+    "languages_detected": [
+      "ko", "en"
+    ]
+  },
+  "anisaga.life": {
+    "languages_detected": [
+      "zh"
+    ]
+  },
+  "annalist.noblogs.org": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "annex.fedimovie.com": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "annihilation.social": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "antarian.social": {
+    "open_registrations": false
+  },
+  "anticapitalista.it": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "antropocosas.noblogs.org": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "arabi.gay": {
+    "languages_detected": [
+      "ar"
+    ]
+  },
+  "argumento.noblogs.org": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "arkm.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "arob.noblogs.org": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "artsandculture.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "asocial.dk": {
+    "languages_detected": [
+      "da"
+    ]
+  },
+  "asso.lgbt": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "asstodon.social": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "ayom.media": {
+    "languages_detected": [
+      "pt"
+    ]
+  },
+  "bagarrosphere.fr": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "bahn.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "baka.ink": {
+    "languages_detected": [
+      "zh"
+    ]
+  },
+  "baleafunk.eus": {
+    "languages_detected": [
+      "eu"
+    ]
+  },
+  "ballverliebt.eus": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "baltic.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bangdream.space": {
+    "languages_detected": [
+      "zh", "ja", "en"
+    ]
+  },
+  "bantu.social": {
+    "languages_detected": [
+      "pt"
+    ]
+  },
+  "barcamp.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bauphysik.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bayern-online.news": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bayerwald.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bbs.mcrail.top": {
+    "languages_detected": [
+      "zh"
+    ]
+  },
+  "bcn.convoca.la": {
+    "languages_detected": [
+      "ca"
+    ]
+  },
+  "be-lieve.hostdon.ne.jp": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "benihistudio.art": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "benktube.bankdanas.synology.me": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "beo.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "beretsky.net": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "berlin.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bermus.dk": {
+    "languages_detected": [
+      "da"
+    ]
+  },
+  "bertha.social": {
+    "languages_detected": [
+      "pt"
+    ]
+  },
+  "betamax.donotsta.re": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "bewegte-bilder.berlin": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bibliodiversidade.club": {
+    "languages_detected": [
+      "pt"
+    ]
+  },
+  "bideoak.zeorri.eus": {
+    "languages_detected": [
+      "eu"
+    ]
+  },
+  "bien-etre.social": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "bikes.social": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "bildung.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "biplus.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "blackcomedy.blog.edu.kg": {
+    "languages_detected": [
+      "zh"
+    ]
+  },
+  "blasmusik.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bloade.social": {
+    "languages_detected": [
+      "zh"
+    ]
+  },
+  "blog.edu.kg": {
+    "languages_detected": [
+      "zh"
+    ]
+  },
+  "blog.entropie.is": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "blog.gayfr.social": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "blog.gerontopilot.de": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "blog.interordi.com": {
+    "languages_detected": [
+      "en", "fr"
+    ]
+  },
+  "blog.linarphy.net": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "blog.metodistiudine.nohost.me": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "blog.moortaube.de": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "blog.narecki.name": {
+    "languages_detected": [
+      "pl"
+    ]
+  },
+  "blog.pixelspieler.net": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "blog.ring2.de": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "blog.stpauli.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "blog.thomas-pape.de": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "blog.troch.org": {
+    "open_registrations": false
+  },
+  "blog.zeruhur.icu": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "blogi.social": {
+    "languages_detected": [
+      "fi"
+    ]
+  },
+  "blueplanet.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bluesskey.jp": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "blumenwie.se": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bms.social": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "bokantag.o-k-i.net": {
+    "languages_detected": [
+      "ht"
+    ]
+  },
+  "bolha.us": {
+    "languages_detected": [
+      "pt", "en"
+    ]
+  },
+  "bologna.one": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "bonito.cafe": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "bonn.jetzt": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bonn.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bookclub.masto.host": {
+    "open_registrations": false
+  },
+  "bookstodon.es": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "bookwyrm.de": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bookwyrm.it": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "boskovice.social": {
+    "languages_detected": [
+      "cs"
+    ]
+  },
+  "bot.pnpde.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bots.fedi.cr": {
+    "languages_detected": [
+      "es"
+    ]
+  },
+  "brandenburg.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bremen.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "brettspiel.space": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "brinjal.org": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "brokkoli.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "brughiere.noblogs.org": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "bu.noblogs.org": {
+    "languages_detected": [
+      "it"
+    ]
+  },
+  "buendnis-courage.de": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "buicha.social": {
+    "languages_detected": [
+      "ja"
+    ]
+  },
+  "burningboard.net": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "burnthis.town": {
+    "languages_detected": [
+      "pt"
+    ]
+  },
+  "bustyvelbolet.no": {
+    "languages_detected": [
+      "no"
+    ]
+  },
+  "bvb.social": {
+    "languages_detected": [
+      "de"
+    ]
+  },
+  "bw.heraut.eu": {
+    "languages_detected": [
+      "fr"
+    ]
+  },
+  "byzantinenexus.io": {
+    "languages_detected": [
+      "en"
+    ]
+  },
+  "bzh.social": {
+    "languages_detected": [
+      "fr"
     ]
   },
   "ddoskey.com": {
