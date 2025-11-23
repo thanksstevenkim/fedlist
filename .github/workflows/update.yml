@@ -34,7 +34,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install langdetect requests
       - name: Fetch instance statistics
         run: python scripts/fetch_stats.py
       - name: Commit updated stats
